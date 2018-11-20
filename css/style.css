@@ -1,0 +1,143 @@
+/*
+Author: Ebenezer Makinde.
+Scope: iReporter Application.
+Start date: 19/11/2018.
+End date: 
+ */
+
+ /* General body styling */
+ body {
+    margin: 0px;
+    padding: 0px;
+  }
+
+  /* Container div styling */
+  .container {
+    margin: auto;
+    width: 80%;
+    overflow: hidden;
+  }
+
+  /*home-page div styling */
+  .home-page {
+    height: 100vh;
+    display:  flex;
+    flex-direction: column;
+  }
+
+
+ /* Header */
+  
+ header {
+    min-height: 70px;
+    border-bottom: 1px solid white;
+  }
+  
+  header a {
+    text-decoration: none;
+    color: gray;
+    font: normal 22px "K2D", sans-serif;
+  }
+  
+  header ul {
+    margin: 0px;
+    padding: 0px;
+  }
+  
+  header li {
+    display: inline;
+    padding: 0px 20px 0px 10px;
+  }
+
+  header a:hover {
+    background-color: #ddd;
+    color: black;
+  }
+
+  header a.active {
+    background-color: #570A7B;
+    border: 1px solid black;
+    color: white;
+  }
+
+  #header-title {
+    float: left;
+  }
+  
+  #header-title img {
+    margin-top: 5px;
+    height: 50px;
+  }
+  
+  header nav {
+    float: right;
+    margin-top: 10px;
+  }
+
+  header span {
+      font-size: 30px;
+  }
+
+   /* Showcase styling */
+  
+   #showcase {
+    min-height: 510px;
+    background: url("../images/whistleblower.jpg") no-repeat right center;
+    background-size: cover;
+    color: white;
+    text-align: center;
+    font-family: "K2D", sans-serif;
+    flex: 1;
+  }
+  
+  #showcase h1 {
+    font-size: 80px;
+    margin: 100px 0px 10px 0px;
+    font-weight: bold;
+  }
+  
+  #showcase p {
+    font-size: 33px;
+  }
+
+  /* Footer styling */
+  
+  footer {
+    font-family: "K2D", sans-serif;
+    background-color: darkgray;
+    min-height: 70px;
+  }
+  
+  footer h4 {
+    text-align: center;
+    color: white;
+  }
+
+  /* Media Queries */
+  
+  @media (max-width: 768px) {
+    header #header-title,
+    header nav,
+    header nav li {
+      float: none;
+      width: 100%;
+      text-align: center;
+    }
+    header a {
+      text-align: center;
+      font-size: 17px;
+    }
+    #showcase  {
+      min-height: 850px;
+      margin-top:30px;
+    }
+    #showcase h1 {
+      font-size: 60px;
+    }
+  }
+  
+/* check this out */
+
+
+
+  
