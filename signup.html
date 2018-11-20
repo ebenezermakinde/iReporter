@@ -12,7 +12,7 @@
     <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
     <!-- External css -->
     <link rel="stylesheet" type="text/css" href="./css/style.css">
-    <title>Login page</title>
+    <title>Sign Up</title>
 </head>
 <body>
     <div class="home-page">
@@ -30,18 +30,24 @@
                 </nav>
             </div>
         </header>
-        <section id="section-login">
-            <div class="login-box">
-                <img src="./images/user.png" alt="User Image" class="avatar">
-                <h1>Login here</h1>
+        <section id="section-signup">
+            <div class="signup-box">
+                <img src="./images/add_user.png" alt="User Image" class="avatar">
+                <h1>Sign up</h1>
                 <form action="">
+                    <p>Firstname</p>
+                    <input type="text" name="firstname" id="firstname" placeholder="Enter Firstname">
+                    <p>Lastname</p>
+                    <input type="text" name="lastname" id="lastname" placeholder="Enter lastname">
                     <p>Email</p>
-                    <input type="email" name="email" id="email" placeholder="Enter Email">
+                    <input type="text" name="email" id="email" placeholder="Enter Email">
                     <p>Password</p>
-                    <input type="password" name="password" id="password" placeholder="Enter Password">
-                    <input type="submit" name="submit" id="submit" value="Login">
-                    <a href="#">Forgot your password?</a><br>
-                    <a href="#">Don't have an account?</a>
+                    <input type="password" name="password" id="password" placeholder="Enter password">
+                    <p>Confirm Password</p>
+                    <input type="password" name="confirmpassword" id="confirmpassword" placeholder="confirm password">
+                    <input type="checkbox" name="terms" id="terms">
+                    <a href="#">I agree to the terms of use.</a href="#">
+                    <input type="submit" name="register" value="Register">
                 </form>
             </div>
         </section>

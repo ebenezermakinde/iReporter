@@ -99,8 +99,7 @@ End date:
     font-size: 33px;
   }
 
- /* Footer styling */
-  
+ /* Footer styling */ 
  footer {
   font-family: "K2D", sans-serif;
   background-color: darkgray;
@@ -112,34 +111,10 @@ footer h4 {
   color: white;
 }
   
-/* Media Queries */
-  
-  @media (max-width: 768px) {
-    header #header-title,
-    header nav,
-    header nav li {
-      float: none;
-      width: 100%;
-      text-align: center;
-    }
-    header a {
-      text-align: center;
-      font-size: 17px;
-    }
-    #showcase  {
-      min-height: 850px;
-      margin-top:30px;
-    }
-    #showcase h1 {
-      font-size: 60px;
-    }
-
-  }
-
 /* login section styling */
-  #section-bg {
+  #section-login {
     min-height: 510px;
-    background-color: aqua;
+    background-color: #7B0828;
     color: white;
     text-align: center;
     font-family: "K2D", sans-serif;
@@ -160,14 +135,15 @@ section .login-box{
 }
 
 section .avatar {
-    width: 100px;
-    height: 100px;
+    width: 80px;
+    height: 80px;
     border-radius: 50%;
     position: absolute;
-    top: -10%;
-    left: calc(50% - 50px);
+    top: -4%;
+    left: calc(55% - 50px);
 }
 
+/* login-box styling */
 .login-box h1{
   margin: 0;
   padding: 0 0 20px;
@@ -183,15 +159,15 @@ section .avatar {
   font-weight: bold;
 }
 
-/* login-box input general styling */
-.login-box input {
+/* input general styling */
+input {
   width: 240px;
   margin-bottom: 20px;
 
 }
 
-/* login-box input types styling */
-.login-box input[type="email"], input[type="password"]
+/* input types styling */
+input[type="email"], input[type="password"], input[type="text"]
 {
   border: none;
   border-bottom: 1px solid #fff;
@@ -202,8 +178,15 @@ section .avatar {
   font-size: 16px;
 }
 
-/* login-box submit button styling */
-.login-box input[type="submit"]
+input[type="checkbox"]
+{
+  margin-right: 0;
+  margin-left: -110px;
+}
+
+
+/* submit button styling */
+input[type="submit"]
 {
   border: none;
   outline: none;
@@ -214,8 +197,8 @@ section .avatar {
   border-radius: 20px;
 }
 
-/* login-box submit button hover styling */
-.login-box input[type="submit"]:hover
+/* submit button hover styling */
+input[type="submit"]:hover
 {
   cursor:pointer;
   background: #fb2525;
@@ -233,4 +216,67 @@ section .avatar {
 /* login-box anchor hover styling */
 .login-box a:hover{
   color:  #fb2525;
+}
+
+/* signup section styling */
+#section-signup {
+  min-height: 510px;
+  background-color: #7B0828;
+  color: white;
+  text-align: center;
+  font-family: "K2D", sans-serif;
+  flex: 1;
+}
+
+section .signup-box{
+  width: 300px;
+  height: 650px;
+  background:#000;
+  color:#fff;
+  top: 50%;
+  left: 50%;
+  position: absolute;
+  transform: translate(-50%,-50%);
+  box-sizing: border-box;
+  padding: 50px 30px;
+}
+
+.signup-box p {
+  margin: 0;
+  padding: 0;
+  text-align: left;
+  font-weight: bold;
+}
+
+section a{
+  margin-left: -110px;
+  text-decoration: none;
+  color: #fff;
+}
+
+section a:hover{
+  color: #fb2525;
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+  header #header-title,
+  header nav,
+  header nav li {
+    float: none;
+    width: 100%;
+    text-align: center;
+  }
+  header a {
+    text-align: center;
+    font-size: 17px;
+  }
+  #showcase  {
+    min-height: 850px;
+    margin-top:30px;
+  }
+  #showcase h1 {
+    font-size: 60px;
+  }
+
 }
