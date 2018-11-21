@@ -34,7 +34,7 @@ End date:
   
   header a {
     text-decoration: none;
-    color: gray;
+    color: grey;
     font: normal 22px "K2D", sans-serif;
   }
   
@@ -49,14 +49,15 @@ End date:
   }
 
   header a:hover {
-    background-color: #ddd;
-    color: black;
+    background-color: white;
+    color: #000;
+    font-weight: bold;
   }
 
   header a.active {
-    background-color: #570A7B;
-    border: 1px solid black;
-    color: white;
+    background: #F3AD2E;
+    border: 2px solid#7B0828;
+    color: #000;
   }
 
   #header-title {
@@ -67,14 +68,10 @@ End date:
     margin-top: 5px;
     height: 50px;
   }
-  
+   
   header nav {
     float: right;
     margin-top: 10px;
-  }
-
-  header span {
-      font-size: 30px;
   }
 
    /* Showcase styling */
@@ -277,6 +274,18 @@ section a:hover{
   }
   #showcase h1 {
     font-size: 60px;
+  }
+  section .signup-box{
+    width: 300px;
+    height: 605px;
+    background:#000;
+    color:#fff;
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%,-50%);
+    box-sizing: border-box;
+    padding: 50px 30px;
   }
 
 }
