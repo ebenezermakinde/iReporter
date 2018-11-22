@@ -147,11 +147,14 @@ form input[type="reset"]:hover
 /* User dashboard table styling */
 table{
     width: 400px;
-    /* border-spacing: 5px; */
 }
 
 table caption{
     font-size: 20px;
+}
+
+table th {
+    background-color: #3b5998;
 }
 
 th{
@@ -175,15 +178,22 @@ tr:nth-child(odd){
     background-color: #ddd;
 }
 
+table .user-event-images{
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+}
+
 @media(max-width:1000px){
     .navbar-nav{display: none}
     form{
         width: 60%;
     }
-  
+    th,td {
+        padding: 5px;
+    }
 }
 
 @media(min-width:600px){
      .open-slide{display: none} 
- 
 }
