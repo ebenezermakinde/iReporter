@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- Tab icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
+    <!-- stylesheet -->
+    <link rel="stylesheet" href="./css/userdashboard.css">
+    <title>Dashboard|Interventions</title>
+</head>
+<body>
+    <nav class="navbar">
+        <span class="open-slide">
+            <a href="#" id="open-sidebar">
+                <svg width="30" height="30">
+                    <path d="M0,5 30,5" stroke="#fff" stroke-width="5"/>
+                    <path d="M0,14 30,14" stroke="#fff" stroke-width="5"/>
+                    <path d="M0,23 30,23" stroke="#fff" stroke-width="5"/>
+                </svg>
+            </a>   
+        </span>
+        <ul class="navbar-nav">
+            <li><a href="#">Dashboard</a></li>
+            <li><a href="#">Red Flags</a></li>
+            <li><a href="#">Interventions</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+    </nav>
+    <div id="side-menu" class="side-nav">
+        <a href="#" class="btn-close" id="close-sidebar">&times;</a>
+        <a href="./userdashboard.html">Dashboard</a>
+        <a href="./redflag.html">Red Flags</a>
+        <a href="#">Interventions</a>
+        <a href="#">Contact</a>
+    </div>
+
+    <div id="main">
+        <h2>Create an Intervention</h2>
+        <form action="">
+            <div class="form-group">
+                <label for="intervention">Intervention Name</label>
+                <input type="text" name="intervention" id="intervention" placeholder="Intervention">
+            </div>
+
+            <div class="form-group">
+                <label for="intervention-image">Upload an Image</label>
+                <input type="file" name="intervention-image" id="intervention-image" accept="image/*">
+            </div>
+
+            <div class="form-group">
+                <label for="intervention-video">Upload a Video</label>
+                <input type="file" name="intervention-video" id="intervention-video" accept="video/*">
+            </div>
+                <input type="reset" name="reset" id="reset" value="Reset">  
+                <input type="submit" name="submit" id="submit" value="Submit">
+        </form>
+    </div>
+    <script src="./js/main.js"></script>
+</body>
+</html>
