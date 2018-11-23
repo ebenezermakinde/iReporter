@@ -1,5 +1,5 @@
 body{
-    font-family: "Arial", serif;
+    font: 17px/1.5 Arial, Helvetica, sans-serif;
     background-color: #f4f4f4;
     overflow-x: hidden;
 }
