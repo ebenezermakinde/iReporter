@@ -118,7 +118,7 @@ footer h4 {
 
 section .login-box{
   width: 300px;
-  height: 400px;
+  height: 450px;
   background:#000;
   color:#fff;
   top: 50%;
@@ -215,7 +215,7 @@ input[type="submit"]:hover
 
 /* signup section styling */
 #section-signup {
-  min-height: 510px;
+  min-height: 400px;
   background-color: #7B0828;
   color: white;
   text-align: center;
@@ -224,13 +224,13 @@ input[type="submit"]:hover
 
 section .signup-box{
   width: 300px;
-  height: 650px;
+  height: 660px;
   background:#000;
   color:#fff;
   top: 50%;
   left: 50%;
   position: absolute;
-  transform: translate(-50%,-50%);
+  transform: translate(-55%,-50%);
   box-sizing: border-box;
   padding: 50px 30px;
 }
@@ -276,15 +276,15 @@ section a:hover{
   }
   section .signup-box{
     width: 300px;
-    height: 605px;
+    height: 600px;
     background:#000;
+    font: 15px/1 Arial, Helvetica, sans-serif;
     color:#fff;
     top: 50%;
     left: 50%;
     position: absolute;
     transform: translate(-50%,-50%);
     box-sizing: border-box;
-    padding: 50px 30px;
+    padding: 40px 30px;
   }
-
 }
