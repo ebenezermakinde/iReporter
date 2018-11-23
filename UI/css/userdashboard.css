@@ -10,6 +10,9 @@ body{
     height: 63px;
 }
 
+.navbar a.active {
+    background-color: #ddd;  
+}
 .navbar a{
     float: left;
     display: block;
