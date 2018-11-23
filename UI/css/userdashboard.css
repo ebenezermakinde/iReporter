@@ -74,6 +74,78 @@ html, body {
     font-size: 36px;
     margin-left: 50px;
 }
+
+#main h2{
+    text-align: center;
+}
+
+/* form styling */
+form {
+    width: 20%;
+    margin: auto;
+    margin-bottom: 50px;
+    background: white;
+    padding: 20px 0 40px 40px;
+    box-sizing: border-box;
+    font-weight: bold;
+    color: #1C309F;
+    font-size: 17px;
+    border-radius: 10px;
+    box-shadow: 3px 3px 3px;
+}
+
+
+form input[type="text"], input[type="file"],select {
+    display: block;
+    width: 80%;
+    margin: 10px 0px 10px 0px;;
+    font-size: 17px;
+    padding: 10px;
+    border: 2px solid #d8d8d8;
+    border-radius: 8px;
+    color: #1C309F;
+  }
+
+/* button styling */
+form input[type="submit"]
+{
+  border: none;
+  outline: none;
+  width: 80px;
+  height: 40px;
+  background: rgba(0,0,255,0.7);
+  color: #fff;
+  font-size: 18px;
+  border-radius: 20px;
+}
+
+form input[type="reset"]
+{
+  border: none;
+  outline: none;
+  width: 80px;
+  height: 40px;
+  background: rgba(255,0,0,0.5);
+  color: #fff;
+  font-size: 18px;
+  border-radius: 20px;
+}
+
+/* submit button hover styling */
+form input[type="submit"]:hover
+{
+  cursor:pointer;
+  background: rgba(0,255,0,0.7);
+  color:#000;
+}
+
+/* reset button hover styling */
+form input[type="reset"]:hover
+{
+  cursor:pointer;
+  background: rgba(255,0,0,0.7);
+  color:#000;
+}
   
   /*Sizing for the divs(spacer,cards & col)*/
   .spacer {
