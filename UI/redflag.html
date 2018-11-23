@@ -37,11 +37,15 @@
     </div>
 
     <div id="main">
-        <h2>Create a Red Flag</h2>
+        <h2>Create an Incident</h2>
         <form action="">
             <div class="form-group">
-                <label for="flag-name">Flag name</label>
-                <input type="text" name="flag-name" id="flag-name" placeholder="Enter flag">
+                <label for="incident-name">Choose an Incident</label>
+                <select name="incident-name" id="incident-name">
+                    <option value="">--Please choose an option--</option>
+                    <option value="redflag">Red Flag</option>
+                    <option value="intervention">Intervention</option>
+                </select>
             </div>
 
             <div class="form-group">

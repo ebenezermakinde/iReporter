@@ -92,7 +92,7 @@ form {
 }
 
 
-form input[type="text"], input[type="file"] {
+form input[type="text"], input[type="file"],select {
     display: block;
     width: 80%;
     margin: 10px 0px 10px 0px;;
