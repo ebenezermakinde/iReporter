@@ -68,17 +68,27 @@ body{
     margin-left: 50px;
 }
 
-#main{
+  /*Sizing for spacer,card and col divs*/
+  .spacer {
+    max-width: 1200px;
+    margin: auto;
+    overflow: hidden;
     transition: 0.5s;
     padding: 20px;
-    overflow: hidden;
-    width: 100%;
-}
-
-#main h2{
-    text-align: center;
-}
-
+  }
+  
+  .cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+  
+  .col {
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  
 /* form styling */
 form {
     width: 20%;
