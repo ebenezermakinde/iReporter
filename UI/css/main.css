@@ -1,0 +1,511 @@
+/* General body styling */
+body {
+	margin: 0;
+	padding: 0;
+	font: 18px/1.5 Arial, Helvetica, sans-serif;
+	background-color: #d5dae5;
+}
+.header {
+	position: absolute;
+	width: 100%;
+	z-index: 3;
+	height: 44px;
+	background-color: #fff;
+	border-bottom: 3px solid #2d3d51;
+}
+/* logo in header(mobile version) and side-nav (tablet & desktop) */
+.logo {
+	height: 44px;
+	padding: 10px;
+	font-weight: 700;
+}
+.header .logo {
+	color: #233245;
+}
+.side-nav .logo {
+	background-color: #233245;
+	color: #fff;
+}
+.header .logo {
+	float: left;
+}
+.header .logo {
+	height: 44px;
+	z-index: 1;
+	padding: 10px;
+	font-weight: 700;
+	color: #233245;
+}
+.logo  i {
+	font-size: 22px;
+}
+.logo span {
+	margin-left: 5px;
+}
+.nav-trigger {
+	position: relative;
+	float: right;
+	width: 20px;
+	height: 44px;
+	right: 30px;
+	display: block;	
+}
+.nav-trigger span, .nav-trigger span:before, span:after {
+	width: 20px;
+	height: 2px;
+	background-color: #35475e;
+	position: absolute;
+}
+.nav-trigger span {
+	top: 50%;
+}
+.nav-trigger span:before, .nav-trigger span:after {
+	content: '';
+}
+.nav-trigger span:before {
+	top: -6px;
+}
+.nav-trigger span:after {
+	top: 6px;
+}
+/* side navigation styles */
+.side-nav {
+	position: absolute;
+	width: 100%;
+	height: 100vh;
+	background-color: #35475e;
+	z-index: 1;
+	display: none;
+}
+.side-nav.visible {
+	display: block;
+	position: absolute;
+	width: 100%;
+	height: 100vh;
+	background-color: #35475e;
+}
+.side-nav ul {
+	margin: 0;
+	padding: 0;
+}
+.side-nav ul li {
+	padding: 16px 16px;
+	border-bottom: 1px solid #3c506a;
+	position: relative;
+}
+.side-nav ul li.active:before {
+	content: '';
+	position: absolute;
+	width: 4px;
+	height: 100%;
+	top: 0;
+	left: 0;
+	background-color: #fff;
+}
+.side-nav ul li a {
+	color: #fff;
+	display: block;
+	text-decoration: none;
+}
+.side-nav ul li i {
+	color: #0497df;
+	min-width: 20px;
+	text-align: center;
+}
+.side-nav ul li span:nth-child(2) {
+	margin-left: 10px;
+	font-size: 14px;
+	font-weight: 600;
+}
+
+/* form general styling */
+div.form-content {
+	height: 100vh;
+    display:  flex;
+    flex-direction: column;
+}
+
+.form-content .title ,div.main-content-user .title {
+	background-color: #eef1f7;
+	border-bottom: 1px solid #b8bec9;
+	padding: 10px 20px;
+	font-weight: 700;
+	color: #333;
+	font-size: 18px;
+}
+
+/* main content user styles */
+div.main-content-user {
+	margin-top: 0;
+	padding: 0;
+	padding-top: 44px;
+	height: 100%;
+	overflow: hidden;	
+}
+
+/* main content styles */
+div.main-content {
+	padding: 40px;
+	margin-top: 0;
+	padding: 0;
+	padding-top: 44px;
+	height: 100%;
+	overflow: hidden;
+}
+div.main-content .title {
+	background-color: #eef1f7;
+	border-bottom: 1px solid #b8bec9;
+	padding: 10px 20px;
+	font-weight: 700;
+	color: #333;
+	font-size: 18px;
+}
+
+div.list-content{
+	margin-top: 0;
+	padding: 0;
+	padding-top: 44px;
+	height: 100%;
+}
+
+div.list-content .title{
+	background-color: #eef1f7;
+	border-bottom: 1px solid #b8bec9;
+	padding: 10px 20px;
+	font-weight: 700;
+	color: #333;
+	font-size: 18px;
+}
+
+/* list content styles */
+div.main-list{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin-top: 54px;
+}
+
+/* main box user container */
+.main-user-profile {
+	display: flex;
+	width: 100%;
+    height: 700px;
+    align-items: center;
+}
+
+.main-user {
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 850px;	
+}
+/* container-user */
+.container-user {
+	display: flex;
+    flex-direction: column;
+    width: 430px;
+    height: 850px;
+}
+/* main box container */
+.main {
+	display: flex;
+	flex-flow: row wrap;
+}
+/* form box container */
+.form {
+	display: flex;
+	flex-direction: row;
+	font-size: 20px;
+}
+/* widget-user container */
+.widget-user {
+	width: 500px;
+	height: 300px;
+	margin: 15px;
+	border-radius: 6px;
+	background-color: #ffffff;
+	position: relative;
+}
+.widget-user.title {
+	background-color: #eef1f7;
+	border-bottom: 1px solid #dfe4ec;
+	padding: 10px;
+	border-top-left-radius: 6px;
+	border-top-right-radius: 6px;
+	color: #617085;
+	font-weight: 600;	
+}
+.widget {
+	flex-basis: 300px;
+	flex-grow: 10;
+	height: 300px;
+	margin: 15px;
+	border-radius: 6px;
+	background-color: #ffffff;
+	position: relative;
+}
+
+.widget .title {
+	background-color: #eef1f7;
+	border-bottom: 1px solid #dfe4ec;
+	padding: 10px;
+	border-top-left-radius: 6px;
+	border-top-right-radius: 6px;
+	color: #617085;
+	font-weight: 600;
+}
+
+/* chart class styling */
+.chart ul {
+	list-style: none;
+}
+
+.chart ul li {
+	font-size: 20px;
+	font-weight: bold;
+}
+
+span.resolved{
+	color: green;
+}
+
+span.rejected {
+	color: red;
+}
+
+/* form styling */
+form {
+    width: 20%;
+    margin: 40px auto;
+    background: white;
+    padding: 20px 0 40px 40px;
+    box-sizing: border-box;
+    font-weight: bold;
+    color: #2d3d51;
+    font-size: 17px;
+    border-radius: 10px;
+    box-shadow: 3px 3px 3px;
+}
+
+
+form input[type="text"], input[type="file"],select {
+    display: block;
+    width: 80%;
+    margin: 10px 0px 10px 0px;;
+    font-size: 17px;
+    padding: 10px;
+    border: 2px solid #d8d8d8;
+    border-radius: 8px;
+    color: #000;
+  }
+
+/* button styling */
+form input[type="submit"]
+{
+  border: none;
+  outline: none;
+  width: 80px;
+  height: 40px;
+  background: rgba(0,0,255,0.7);
+  color: #000;
+  font-size: 18px;
+  border-radius: 20px;
+}
+
+form input[type="reset"]
+{
+  border: none;
+  outline: none;
+  width: 80px;
+  height: 40px;
+  background: rgba(255,0,0,0.5);
+  color: #000;
+  font-size: 18px;
+  border-radius: 20px;
+}
+
+/* submit button hover styling */
+form input[type="submit"]:hover
+{
+  cursor:pointer;
+  background: rgba(0,255,0,0.7);
+  color:#000;
+}
+
+/* reset button hover styling */
+form input[type="reset"]:hover
+{
+  cursor:pointer;
+  background: rgba(255,0,0,0.7);
+  color:#000;
+}
+
+/* User dashboard table styling */
+table{
+    width: 500px;
+}
+
+.user-table-lists{
+    width: 600px;
+}
+
+table caption{
+    font-size: 20px;
+}
+
+table th {
+    background-color: #3b5998;
+}
+
+th{
+    text-align: left;
+}
+
+table, th, td {
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 20px;
+}
+
+tr:nth-child(even){
+    background-color: #fff;
+}
+
+tr:nth-child(odd){
+    background-color: #ddd;
+}
+
+table .user-event-images{
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+}
+
+.title #flag{
+	color: red;
+}
+
+.title #tasks{
+	color: blue;
+}
+
+/* set element styles to fit tablet and higher(desktop) */
+@media screen and (min-width: 600px) {
+	.header {
+		background-color: #35475e;
+		z-index: 1;
+	}
+	.header .logo {
+		display: none;
+	}
+	.nav-trigger {
+		display: none;
+	}
+	.nav-trigger span, .nav-trigger span:before, span:after {
+		background-color: #fff;
+	}
+	.side-nav {
+		display: block;
+		width: 70px;
+		z-index: 2;
+	}
+	.side-nav ul li span:nth-child(2) {
+		display: none;
+	}
+	.side-nav .logo i {
+		padding-left: 12px;
+	}
+	.side-nav .logo span {
+		display: none;
+	}
+	.side-nav ul li i {
+		font-size: 26px;
+	}
+	.side-nav ul li a {
+		text-align: center;
+	}
+	.main-content-user {
+		margin-left: 10px;	
+	}
+	.main-content {
+		margin-left: 10px;
+	}
+
+	.list-content {
+		margin-left: 10px;
+	}
+	form {
+		width: 300px;
+		margin: 40px auto;
+		background: white;
+		padding: 20px 0 40px 40px;
+		box-sizing: border-box;
+		color: #2d3d51;
+		font-size: 12px;
+		border-radius: 10px;
+		flex-direction: 1;
+	}
+	div.main-list{
+		margin: 0;
+		position: absolute;
+		font-weight: bold;
+		top: 30%;
+		left: 40%;
+		margin-right: -50%;
+		transform: translate(-30%, -40%) 
+	}
+}
+/* set element styles for desktop */
+@media screen and (min-width: 1000px) {
+	.side-nav {
+		width: 200px;
+	}
+	.side-nav ul li span:nth-child(2) {
+		display: inline-block;
+	}
+	.side-nav ul li i {
+		font-size: 16px;
+	}
+	.side-nav ul li a {
+		text-align: left;
+	}
+	.side-nav .logo i {
+		padding-left: 0;
+	}
+	.side-nav .logo span {
+		display: inline-block;
+	}
+	.main-content-user {
+		margin-left: 200px;
+	}
+	.main-content {
+		margin-left: 200px;
+	}
+	.form-content {
+		margin-left: 10px;
+	}
+	.list-content {
+		margin-left: 50px;
+	}
+	table .user-event-images{
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+	}
+	form {
+		width: 20%;
+		margin: 40px auto;
+		background: white;
+		padding: 20px 0 40px 40px;
+		box-sizing: border-box;
+		color: #2d3d51;
+		font-size: 18px;
+		border-radius: 10px;
+		box-shadow: 3px 3px 3px;
+		flex-direction: 1;
+	}
+}
