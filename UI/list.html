@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    	<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>User iReport Lists</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+  <!-- meta tags for webcrawlers -->
+	<meta name="description" content="This is an iReporter application" />
+	<meta name="author" content="Ebenezer Makinde" />
+	<meta name="keyword" content="incidents, corruption, government, agency">
+	<!-- Tab icon -->
+  <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
+  <!-- External css -->
+		<link rel="stylesheet" href="./css/main.css">
+	</head>
+	<body>
+		<div class="header">
+			<div class="logo">
+				<i class="fa fa-tachometer"></i>
+				<span>iReporter</span>
+			</div>
+			<a href="#" class="nav-trigger"><span></span></a>
+		</div>
+		<div class="side-nav">
+			<div class="logo">
+				<i class="fa fa-tachometer"></i>
+				<span>iReporter</span>
+			</div>
+			<nav>
+				<ul>
+					<li>
+						<a href="./userprofile.html">
+							<span><i class="fa fa-user"></i></span>
+							<span>User profile</span>
+						</a>
+					</li>
+					<li>
+						<a href="./ireport.html">
+							<span><i class="fa fa-file"></i></span>
+							<span>iReport Case</span>
+						</a>
+					</li>
+					<li class="active">
+						<a href="./list.html">
+							<span><i class="fa fa-table"></i></span>
+							<span>My iReport Lists</span>
+						</a>
+					</li>
+				</ul>
+			</nav>
+		</div>
+		<div class="list-content">
+			<div class="title">
+				My iReports
+			</div>
+			<div class="main-list">
+            <table>
+                    <thead>
+                        <tr>
+                            <th>S/No</th>
+                            <th>Type</th>
+                            <th>Name</th>
+                            <th>Image</th>
+                            <th>Video</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>Red Flag</td>
+                            <td>Corrupt Police Man</td>
+                            <td><img src="./images/add_user.png" alt="bad police" class="user-event-images"></td>
+                            <td>file name</td>
+                            <td>Rejected</td>
+                            <td>
+                                <a href="./edit.html">Edit</a>
+                                <a href="./delete.html">Delete</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>Intervention</td>
+                            <td>Deplorable state of Mushin hospital</td>
+                            <td><img src="./images/user.png" alt="bad police" class="user-event-images"></td>
+                            <td>file name</td>
+                            <td>Under-investigation</td>
+                            <td>
+                                <a href="./edit.html">Edit</a>
+                                <a href="./delete.html">Delete</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <th>S/No</th>
+                            <th>Type</th>
+                            <th>Name</th>
+                            <th>Image</th>
+                            <th>Video</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+		<script src="main.js"></script>
+	</body>
+</html>

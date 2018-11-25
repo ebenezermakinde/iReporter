@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    	<meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+        <!-- meta tags for webcrawlers -->
+	    <meta name="description" content="This is an iReporter application" />
+	    <meta name="author" content="Ebenezer Makinde" />
+	    <meta name="keyword" content="incidents, corruption, government, agency">
+	    <!-- Tab icon -->
+	    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
+        <link rel="stylesheet" href="./css/main.css">
+        <title>User Profile</title>
+	</head>
+	<body>
+		<div class="header">
+			<div class="logo">
+				<i class="fa fa-tachometer"></i>
+				<span>iReporter</span>
+			</div>
+			<a href="#" class="nav-trigger"><span></span></a>
+		</div>
+		<div class="side-nav">
+			<div class="logo">
+				<i class="fa fa-tachometer"></i>
+				<span>iReporter</span>
+			</div>
+			<nav>
+				<ul>
+					<li>
+						<a href="./userprofile.html">
+							<span><i class="fa fa-user"></i></span>
+							<span>User profile</span>
+						</a>
+					</li>
+					<li class="active">
+						<a href="./ireport.html">
+							<span><i class="fa fa-forms"></i></span>
+							<span>iReport Case</span>
+						</a>
+					</li>
+					<li>
+						<a href="./list.html">
+							<span><i class="fa fa-table"></i></span>
+							<span>My iReport Lists</span>
+						</a>
+					</li>
+				</ul>
+			</nav>
+		</div>
+		<div class="form-content">
+			<div class="title">
+				iReport Case
+			</div>
+			<div class="form">
+        <form action="">
+          <div class="form-group">
+            <label for="incident-name">Choose an Incident</label>
+            <select name="incident-name" id="incident-name">
+              <option value="">--Please choose an option--</option>
+              <option value="redflag">Red Flag</option>
+              <option value="intervention">Intervention</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" name="name" id="name" placeholder="Name the incident">
+          </div>
+          <div class="form-group">
+            <label for="flag-image">Upload an Image</label>
+            <input type="file" name="flag-image" id="flag-image" accept="image/*">
+          </div>
+          <div class="form-group">
+            <label for="flag-video">Upload a Video</label>
+            <input type="file" name="flag-video" id="flag-video" accept="video/*">
+          </div>
+          <div class="form-group">
+            <label for="geolocation">Cordinates</label>
+            <input type="text" name="name" id="name" placeholder="Locate on the map">
+          </div>
+          <input type="reset" name="reset" id="reset" value="Reset">  
+          <input type="submit" name="submit" id="submit" value="Submit">
+        </form>
+      </div>
+    </div>
+		<script src="main.js"></script>
+	</body>
+</html>

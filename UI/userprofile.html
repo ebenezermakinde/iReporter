@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <!-- meta tags for webcrawlers -->
+    <meta name="description" content="This is an iReporter application" />
+    <meta name="author" content="Ebenezer Makinde" />
+    <meta name="keyword" content="incidents, corruption, government, agency">
+    <!-- Tab icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
+    <!-- External css -->
+    <link rel="stylesheet" href="./css/main.css">
+    <title>User Profile</title>
+	</head>
+	<body>
+		<div class="header">
+			<div class="logo">
+				<i class="fa fa-tachometer"></i>
+				<span>iReporter</span>
+			</div>
+			<a href="#" class="nav-trigger" id="nav-toggler"><span></span></a>
+		</div>
+		<div class="side-nav" id="sider-nav">
+			<div class="logo">
+				<i class="fa fa-tachometer"></i>
+				<span>iReporter</span>
+			</div>
+			<nav>
+				<ul>
+					<li class="active">
+						<a href="./userprofile.html">
+							<span><i class="fa fa-user"></i></span>
+							<span>User profile</span>
+						</a>
+					</li>
+					<li>
+						<a href="./ireport.html">
+							<span><i class="fa fa-file"></i></span>
+							<span>iReport Case</span>
+						</a>
+					</li>
+					<li>
+						<a href="./list.html">
+							<span><i class="fa fa-table"></i></span>
+							<span>My iReport Lists</span>
+						</a>
+					</li>
+				</ul>
+			</nav>
+		</div>
+		<div class="main-content-user">
+			<div class="title">
+				User Profile
+			</div>
+			<div class="main-user">
+				<div class="widget-user">
+					<div class="title">Details <i class="fa fa-user"></i></div>
+						<table>
+							<tr>
+								<th>First name:</th>
+								<td>Ebenezer</td>
+							</tr>
+							<tr>
+								<th>Last name:</th>
+								<td>Makinde</td>
+							</tr>
+							<tr>
+								<th>Email:</th>
+								<td>obeymaka@ymail.com</td>
+							</tr>
+							<tr>
+								<th>Phone:</th>
+								<td>0800callobey</td>
+							</tr>
+						</table>
+        </div>
+				<div class="widget-user">
+					<div class="title">Red Flags <i class="fa fa-flag" id="flag"></i></div>
+					<div class="chart">
+						<ul>
+							<li>Draft: 10</li>
+							<li>Resolved: <span class="resolved">5</span></li>
+							<li>Rejected: <span class="rejected">5</span></li>
+							<li>Under Investigation: 3</li>
+						</ul>
+					</div>
+				</div>
+				<div class="widget-user">
+					<div class="title">Interventions <i class="fa fa-tasks" id="tasks"></i></div>
+					<div class="chart">
+						<ul>
+							<li>Draft: 10</li>
+							<li>Resolved: <span class="resolved">5</span></li>
+							<li>Rejected: <span class="rejected">5</span></li>
+							<li>Under Investigation: 3</li>
+						</ul>
+					</div>
+        </div>
+      </div>
+    </div>
+		<script src="main.js"></script>
+	</body>
+</html>
