@@ -4,7 +4,8 @@
   "description": "This is an ireporter application.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "babel server.js --out-dir build"
   },
   "repository": {
     "type": "git",
