@@ -4,7 +4,7 @@
   "description": "This is an ireporter application.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "mocha server/test/* --exit",
     "build": "babel server.js --out-dir build"
   },
   "repository": {
@@ -18,14 +18,14 @@
   },
   "homepage": "https://github.com/ebenezermakinde/iReporter#readme",
   "dependencies": {
-    "express": "^4.16.4"
+    "express": "^4.16.4",
+    "chai": "^4.2.0",
+    "chai-http": "^4.2.0"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-preset-env": "^1.7.0",
     "babel-watch": "^2.0.7",
-    "chai": "^4.2.0",
-    "chai-http": "^4.2.0",
     "coveralls": "^3.0.2",
     "eslint": "^5.3.0",
     "eslint-config-airbnb-base": "^13.1.0",
