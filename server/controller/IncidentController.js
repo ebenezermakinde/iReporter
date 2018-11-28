@@ -14,6 +14,10 @@ class Incidents {
     const { id } = req.params;
     res.json(incident.removeOne(id));
   }
+
+  static add(req, res) {
+    res.json(incident.addOne(req.body));
+  }
 }
 
 export default Incidents;
