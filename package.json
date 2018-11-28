@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "babel server.js --out-dir build"
+    "build": "babel server.js --out-dir build",
+    "clean": "rm -rf build",
+    "dev-start": "nodemon server/src/server --exec \"node -r babel-register\""
   },
   "repository": {
     "type": "git",
