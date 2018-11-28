@@ -26,12 +26,24 @@ class Incidents {
    */
 
   /**
-   * @returns {object} returns all reflections
+   * @returns {object} returns all red flags
    */
   findAll() {
     return {
       status: 200,
       data: this.incidents,
+    };
+  }
+
+  /**
+   * @returns {object} returns one red flag
+   */
+  findOne(id) {
+    const db = this.incidents;
+    const incident = db.find(item => item.id === Number(id));
+    return {
+      status: 200,
+      data: incident,
     };
   }
 }
