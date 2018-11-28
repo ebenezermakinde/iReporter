@@ -1,13 +1,15 @@
-// server.js
-import express from 'express';
+const express = require('express');
 
 const app = express();
 
-app.use(express.json());
-
-app.get('/', (req, res) => { return res.status(200).send({ message: 'Welcome to iReporters app!' });
+app.get('/', (req, res) => {
+  res.json({ message: 'Hello World!' });
 });
 
-app.listen(3000, () => {
-  console.log('app running on port  3000');
+const port = process.env.PORT || 3000;
+
+app.listen(port, () => {
+  console.log(`App is listening on port ${port}`);
 });
+
+module.exports = app;
