@@ -5,4 +5,6 @@ const router = express.Router();
 
 router.get('/red-flags', incident.getAll);
 
+router.get('/red-flags/:id', incident.getOne);
+
 export default router;
