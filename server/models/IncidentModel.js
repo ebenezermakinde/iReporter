@@ -46,6 +46,21 @@ class Incidents {
       data: incident,
     };
   }
+
+  /**
+   * @returns {object} deletes a red flag
+   */
+  removeOne(id) {
+    const db = this.incidents;
+    db.filter(item => item.id !== Number(id));
+    return {
+      status: 200,
+      data: [{
+        id,
+        message: 'red flag record has been deleted',
+      }],
+    };
+  }
 }
 
 export default new Incidents();
