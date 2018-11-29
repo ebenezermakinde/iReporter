@@ -6,7 +6,6 @@ const server = require('../server');
 
 chai.use(chaiHttp);
 describe('Api test suite', () => {
-
   describe('Test server.js', () => {
     it('should return Hello World!', (done) => {
       chai

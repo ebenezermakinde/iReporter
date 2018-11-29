@@ -1,5 +1,5 @@
-import express from 'express';
-import incident from '../controller/IncidentController';
+const express = require('express');
+const incident = require('../controller/IncidentController');
 
 const router = express.Router();
 
@@ -13,4 +13,6 @@ router.post('/red-flags', incident.add);
 
 router.patch('/red-flags/:id/comment', incident.updateComment);
 
-export default router;
+router.patch('/red-flags/:id/location', incident.updateLocation);
+
+module.exports = router;
