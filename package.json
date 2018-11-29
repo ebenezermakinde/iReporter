@@ -6,6 +6,7 @@
   "scripts": {
     "test": "mocha server/test/* --require @babel/register --exit",
     "build": "babel server.js --out-dir build",
+     "clean": "rm -rf build",
     "dev-start": "nodemon server/server --exec \"node -r @babel/register\""
   },
   "repository": {
