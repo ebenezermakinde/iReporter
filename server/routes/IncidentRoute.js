@@ -11,4 +11,6 @@ router.delete('/red-flags/:id', incident.remove);
 
 router.post('/red-flags', incident.add);
 
+router.patch('/red-flags/:id/comment', incident.updateComment);
+
 export default router;

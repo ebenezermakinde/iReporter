@@ -18,6 +18,12 @@ class Incidents {
   static add(req, res) {
     res.json(incident.addOne(req.body));
   }
+
+  static updateComment(req, res) {
+    const { id } = req.params;
+    const { comment } = req.body;
+    res.json(incident.patchComment(id, comment));
+  }
 }
 
 export default Incidents;
