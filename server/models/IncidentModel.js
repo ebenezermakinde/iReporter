@@ -94,6 +94,19 @@ class Incidents {
       }],
     };
   }
+
+  patchComment(id, comment) {
+    const db = this.incidents;
+    const incident = db.find(item => item.id === Number(id));
+    incident.comment = comment;
+    return {
+      Status: 201,
+      Data: [{
+        id,
+        Message: 'Updated red-flag record\'s comment',
+      }],
+    };
+  }
 }
 
 export default new Incidents();
