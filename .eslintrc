@@ -1,11 +1,15 @@
 {
-    "extends": [
-      "airbnb-base"
-    ],
-    "rules": {
-          "linebreak-style": [
-        "error",
-        "windows"
-      ]
-    }
+  "plugins": [
+    "mocha"
+  ],
+  "extends": [
+    "airbnb-base"
+  ],
+  "rules": {
+    "mocha/no-exclusive-tests": "error",
+    "linebreak-style": [
+      "error",
+      "windows"
+    ]
   }
+}
