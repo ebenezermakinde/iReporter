@@ -22,7 +22,7 @@ class Incidents {
   }
 
   /**
-   * @returns {object} returns all red flags
+   * @returns {object} returns all red-flags/interventions
    */
   findAll() {
     return {
@@ -44,7 +44,7 @@ class Incidents {
   }
 
   /**
-   * @returns {object} deletes a red flag
+   * @returns {object} deletes a red-flag/intervention
    */
   removeOne(id) {
     const db = this.incidents;
@@ -69,7 +69,7 @@ class Incidents {
   }
 
   /**
-   * @returns {object} deletes a red flag
+   * @returns {object} adds a red-flag/intervention
    */
   addOne(incident) {
     const db = this.incidents;
@@ -107,6 +107,19 @@ class Incidents {
       }],
     };
   }
+
+  patchLocation(id, location) {
+    const db = this.incidents;
+    const incident = db.find(item => item.id === Number(id));
+    incident.location = location;
+    return {
+      Status: 201,
+      Data: [{
+        id,
+        Message: 'Updated red-flag record\'s location',
+      }],
+    };
+  }
 }
 
-export default new Incidents();
+module.exports = new Incidents();

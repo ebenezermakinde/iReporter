@@ -1,4 +1,4 @@
-import incident from '../models/IncidentModel';
+const incident = require('../models/IncidentModel');
 
 class Incidents {
   static getAll(req, res) {
@@ -24,6 +24,12 @@ class Incidents {
     const { comment } = req.body;
     res.json(incident.patchComment(id, comment));
   }
+
+  static updateLocation(req, res) {
+    const { id } = req.params;
+    const { location } = req.body;
+    res.json(incident.patchLocation(id, location));
+  }
 }
 
-export default Incidents;
+module.exports = Incidents;
