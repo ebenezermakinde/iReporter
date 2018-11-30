@@ -25,10 +25,7 @@ class Incidents {
    * @returns {object} returns all red-flags/interventions
    */
   findAll() {
-    return {
-      status: 200,
-      data: this.incidents,
-    };
+    return this.incidents;
   }
 
   /**
@@ -37,10 +34,7 @@ class Incidents {
   findOne(id) {
     const db = this.incidents;
     const incident = db.find(item => item.id === Number(id));
-    return {
-      status: 200,
-      data: incident,
-    };
+    return incident;
   }
 
   /**
@@ -49,23 +43,8 @@ class Incidents {
   removeOne(id) {
     const db = this.incidents;
     const incident = db.findIndex(item => item.id === Number(id));
-    if (incident === -1) {
-      return {
-        status: 404,
-        data: [{
-          id,
-          message: `id of ${id} is not found`,
-        }],
-      };
-    }
     db.splice(incident, 1);
-    return {
-      status: 200,
-      data: [{
-        id,
-        message: 'red flag record has been deleted',
-      }],
-    };
+    return incident;
   }
 
   /**
@@ -86,40 +65,20 @@ class Incidents {
     };
 
     db.push(newIncident);
-    return {
-      status: 201,
-      data: [{
-        id: `${id.id}`,
-        message: 'Created red-flag record',
-      }],
-    };
+    return newIncident;
   }
 
-  patchComment(id, comment) {
+  patchComment(id) {
     const db = this.incidents;
     const incident = db.find(item => item.id === Number(id));
-    incident.comment = comment;
-    return {
-      Status: 201,
-      Data: [{
-        id,
-        Message: 'Updated red-flag record\'s comment',
-      }],
-    };
+    return incident;
   }
 
-  patchLocation(id, location) {
+  patchLocation(id) {
     const db = this.incidents;
     const incident = db.find(item => item.id === Number(id));
-    incident.location = location;
-    return {
-      Status: 201,
-      Data: [{
-        id,
-        Message: 'Updated red-flag record\'s location',
-      }],
-    };
+    return incident;
   }
 }
 
-module.exports = new Incidents();
+export default new Incidents();
