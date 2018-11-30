@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.com/ebenezermakinde/iReporter.svg?branch=develop)](https://travis-ci.com/ebenezermakinde/iReporter) [![Coverage Status](https://coveralls.io/repos/github/ebenezermakinde/iReporter/badge.svg?branch=develop)](https://coveralls.io/github/ebenezermakinde/iReporter?branch=develop)
 # iReporter
 ### This is an iReporter application.
 Corruption is a huge bane to Africa’s development. African countries must develop novel and
