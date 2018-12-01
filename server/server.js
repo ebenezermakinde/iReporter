@@ -7,7 +7,7 @@ const app = express();
 
 app.use(express.json());
 
-// parse application/json
+// parse application/json.
 app.use(bodyParser.json());
 
 // parse application/x-www-form-urlencoded
@@ -16,7 +16,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(routes);
 
 // set the process env port.
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 3500;
 
 app.listen(port, () => {
   console.log(`app running on port ${port}`);
