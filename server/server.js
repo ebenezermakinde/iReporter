@@ -15,8 +15,11 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use(routes);
 
-app.listen(3000, () => {
-  console.log('app running on port  3000');
+// set process env for the port.
+const port = process.env.PORT || 3000;
+
+app.listen(port, () => {
+  console.log(`app running on port ${port}`);
 });
 
 module.exports = app;
