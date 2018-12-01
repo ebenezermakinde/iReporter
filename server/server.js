@@ -7,7 +7,7 @@ const app = express();
 
 app.use(express.json());
 
-// parse application/json
+// parse application/json.
 app.use(bodyParser.json());
 
 // parse application/x-www-form-urlencoded
