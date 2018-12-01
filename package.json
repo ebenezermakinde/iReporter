@@ -5,10 +5,11 @@
   "main": "index.js",
   "scripts": {
     "test": "nyc mocha server/test/* --require @babel/register --exit",
-    "build": "babel server.js --out-dir build",
+    "build": "npm run clean && npx babel server --out-dir dist --ignore 'server/test/*'",
     "clean": "rm -rf build",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
-    "dev-start": "nodemon server/server.js --exec \"node -r @babel/register\""
+    "dev-start": "nodemon server/server.js --exec \"node -r @babel/register\"",
+    "production": "npm run build && node server/server.js"
   },
   "engines": {
     "node": "8.12.0"
