@@ -15,7 +15,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use(routes);
 
-// set process env for the port.
+// set the process env port.
 const port = process.env.PORT || 3000;
 
 app.listen(port, () => {
