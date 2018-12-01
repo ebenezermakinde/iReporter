@@ -10,6 +10,9 @@
     "coverage": "nyc report --reporter=text-lcov | coveralls",
     "dev-start": "nodemon server/server --exec \"node -r @babel/register\""
   },
+  "engines": {
+    "node": "8.12.0"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ebenezermakinde/iReporter.git"
