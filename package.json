@@ -9,7 +9,7 @@
     "clean": "rm -rf build",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
     "dev-start": "nodemon server/server.js --exec \"node -r @babel/register\"",
-    "production": "npm run build && node server/server.js"
+    "production": "npm run build && node dist/server"
   },
   "engines": {
     "node": "8.12.0"
