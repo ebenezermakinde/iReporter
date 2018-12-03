@@ -10,7 +10,8 @@
     "linebreak-style": [
       "error",
       "windows"
-    ]
+    ],
+    "no-console": 0
   },
 
   "env": {
