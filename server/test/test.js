@@ -5,6 +5,7 @@ const { expect } = chai;
 const server = require('../server');
 
 chai.use(chaiHttp);
+
 describe('Api test suite', () => {
   describe('GET default endpoint api/v1', () => {
     it('should return Hello World!', (done) => {
