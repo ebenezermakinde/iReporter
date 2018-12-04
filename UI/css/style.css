@@ -6,10 +6,16 @@ End date:
  */
 
  /* General body styling */
- body {
-    font: 17px/1.5 Arial, Helvetica, sans-serif;
+ @import url('https://fonts.googleapis.com/css?family=Lato:300,400,700|Lobster');
+  body {
+    font-family: 'Lato', sans-serif;
     margin: 0px;
     padding: 0px;
+  }
+
+  nav {
+    height: 4em;
+    line-height: 4em;
   }
 
   /* Container div styling */
@@ -19,36 +25,49 @@ End date:
     overflow: hidden;
   }
 
-  /*home-page div styling */
-  .home-page {
-    height: 100vh;
-    display:  flex;
+  .centered {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .flex--row {
+    display: flex;
+  }
+
+  .flex--col {
+    display: flex;
     flex-direction: column;
   }
 
+  .space {
+    justify-content: space-between;
+  }
+
+  a {
+    text-decoration: none;
+    color: #000;
+  }
+
+  /*home-page div styling */
+  .home-page {
+    height: 100vh;
+  }
+
+  .home-page__logo {
+    font-size: 2.5em;
+    font-family: 'Lobster', cursive;
+  }
 
  /* Header */
- header {
-    min-height: 70px;
-    border-bottom: 1px solid white;
-  }
-  
-  header a {
-    text-decoration: none;
-    color: grey;
-    font: normal 22px "K2D", sans-serif;
-  }
-  
-  header ul {
-    margin: 0px;
-    padding: 0px;
-  }
-  
-  header li {
-    display: inline;
-    padding: 0px 20px 0px 10px;
-  }
 
+  .home-page__signup,
+  .home-page__login {
+    font-size: 1.5em;
+    padding-left: 1.3em;
+  }
+  
   header a:hover {
     background-color: white;
     color: #000;
@@ -61,50 +80,38 @@ End date:
     color: #000;
   }
 
-  #header-title {
-    float: left;
-  }
-  
-  #header-title img {
-    margin-top: 5px;
-    height: 50px;
-  }
-   
-  header nav {
-    float: right;
-    margin-top: 10px;
-  }
-
    /* Showcase styling */
   
-   #showcase {
-    min-height: 510px;
+   .home-page__showcase {
+    height: 90vh;
     background: url("../images/reporter.jpg") no-repeat right center;
     background-size: cover;
     color: white;
     text-align: center;
-    flex: 1;
   }
   
-  #showcase h1 {
-    font-size: 80px;
-    margin: 100px 0px 10px 0px;
+  .home-page__showcase h1 {
+    font-size: 72px;
     font-weight: bold;
+    margin-bottom: 0;
   }
   
-  #showcase p {
-    font-size: 33px;
+  .home-page__showcase p {
+    font-size: 24px;
   }
 
  /* Footer styling */ 
  footer {
+  position: fixed;
+  height: 4em;
+  bottom: 0;
   background-color: darkgray;
-  min-height: 80px;
+  width: 100vw;
 }
 
 footer h4 {
   text-align: center;
-  color: white;
+  color: #000;
 }
   
 /* login section styling */
