@@ -18,27 +18,22 @@
 
 <body>
 	<div class="home-page">
-		<header>
-			<div class="container">
-				<div id="header-title">
-					<a href="#">
-						<img src="images/brandlogo.jpg" alt="Brand logo">
-					</a>
-				</div>
-				<nav>
-					<ul>
-						<li id="register-link"><a href="./signup.html">Sign Up</a></li>
-						<li id="login-link"><a href="./login.html">Login</a></li>
-					</ul>
-				</nav>
-			</div>
-		</header>
-		<section id="showcase">
-			<div class="container">
+    <nav>
+      <div class="container flex--row space">
+        <a href="." class="home-page__logo">
+          iReporter
+        </a>
+        <div>
+          <a href="./signup.html" class="home-page__signup">Sign Up</a>
+          <a href="./login.html" class="home-page__login">Login</a>
+        </div>
+      </div>
+    </nav>
+
+		<section class="home-page__showcase">
+			<div class="centered">
 				<h1>iReporter Application</h1>
-				<p>
-					Shine the light on the issues that matter to you.
-				</p>
+				<p>Shine the light on the issues that matter to you.</p>
 			</div>
 		</section>
 		<footer>
