@@ -18,33 +18,29 @@
 
 <body>
   <div class="home-page">
-    <header>
-      <div class="container">
-        <div id="header-title">
-          <a href="./index.html">
-            <img src="images/brandlogo.jpg" alt="Brand logo">
-          </a>
+    <nav>
+      <div class="container flex--row space">
+        <a href="." class="home-page__logo">
+          iReporter
+        </a>
+        <div>
+            <a href="./signup.html" class="home-page__login">Sign Up</a>
+            <a class="active" href="./login.html" class="home-page__login">Login</a>
         </div>
-        <nav>
-          <ul>
-            <li id="register-link"><a href="#">Sign Up</a></li>
-            <li id="login-link"><a class="active" href="#">Login</a></li>
-          </ul>
-        </nav>
       </div>
-    </header>
-    <section id="section-login">
-      <div class="login-box">
-        <img src="./images/user.png" alt="User Image" class="avatar">
+    </nav>
+    <section class="section-form">
+      <div class="form-box centered">
+        <img src="./images/user.png" alt="User Image" class="avatar centered">
         <h1>Login here</h1>
         <form action="">
-          <p>Email</p>
+          <label>Email</label><br>
           <input type="email" name="email" id="email" placeholder="Enter Email">
-          <p>Password</p>
+          <label>Password</label><br>
           <input type="password" name="password" id="password" placeholder="Enter Password">
           <input type="submit" name="submit" id="submit" value="Login">
-          <a href="#">Forgot your password?</a><br>
-          <a href="#">Don't have an account?</a>
+          <div class="flex--row space"><a href="#">Forgot your password?</a>
+            <a href="./signup.html">Don't have an account?</a></div>
         </form>
       </div>
     </section>
@@ -55,4 +51,5 @@
     </footer>
   </div>
 </body>
+
 </html>
