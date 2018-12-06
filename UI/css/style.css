@@ -7,16 +7,18 @@ End date:
 
  /* General body styling */
  @import url('https://fonts.googleapis.com/css?family=Lato:300,400,700|Lobster');
-  body {
-    font-family: 'Lato', sans-serif;
-    margin: 0px;
-    padding: 0px;
-  }
+ 
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Lato', sans-serif;
+}
 
-  nav {
-    height: 4em;
-    line-height: 4em;
-  }
+nav {
+  height: 4em;
+  line-height: 4em;
+}
 
   /* Container div styling */
   .container {
@@ -61,27 +63,18 @@ End date:
   }
 
  /* Header */
-
   .home-page__signup,
   .home-page__login {
     font-size: 1.5em;
     padding-left: 1.3em;
   }
   
-  header a:hover {
-    background-color: white;
-    color: #000;
-    font-weight: bold;
-  }
-
-  header a.active {
+  a.active {
     background: #F3AD2E;
-    border: 2px solid#7B0828;
-    color: #000;
+    font-size: 1.6em;
   }
 
    /* Showcase styling */
-  
    .home-page__showcase {
     height: 90vh;
     background: url("../images/reporter.jpg") no-repeat right center;
@@ -110,29 +103,22 @@ End date:
 }
 
 footer h4 {
+  margin-top: 1.5em;
   text-align: center;
   color: #000;
 }
   
 /* login section styling */
-  #section-login {
-    min-height: 510px;
-    background-color: #7B0828;
+.section-form {
+    background-color: #1769aa;
+    height: 87vh;
     color: white;
-    text-align: center;
-    flex: 1;
   }
 
-section .login-box{
-  width: 300px;
-  height: 450px;
-  background:#000;
-  color:#fff;
-  top: 50%;
-  left: 50%;
-  position: absolute;
-  transform: translate(-50%,-50%);
-  box-sizing: border-box;
+section .form-box{
+  width: 480px;
+  background:#fff;
+  color: #000;
   padding: 70px 30px;
 }
 
@@ -140,52 +126,46 @@ section .avatar {
     width: 80px;
     height: 80px;
     border-radius: 50%;
-    position: absolute;
-    top: -4%;
-    left: calc(55% - 50px);
+    margin-top: -11em;
 }
 
-/* login-box styling */
-.login-box h1{
-  margin: 0;
-  padding: 0 0 20px;
+section .adduser-avatar {
+  margin-top: -17em;
+}
+
+/* form-box styling */
+.form-box h1{
+  margin-top: 1.5em;
   text-align: center;
   font-size: 22px;
 }
 
-/*login box paragraph styling */
-.login-box p {
-  margin: 0;
-  padding: 0;
-  text-align: left;
-  font-weight: bold;
-}
-
 /* input general styling */
 input {
-  width: 240px;
+  border: 1px black solid;
+  width: 415px;
   margin-bottom: 20px;
-
 }
 
 /* input types styling */
-input[type="email"], input[type="password"], input[type="text"]
+label {
+  font-size: 1.3em;
+}
+
+.inputsize {
+  width: 9.5em;
+}
+
+input[type="email"], input[type="password"], input[type="text"], input[type="number"]
 {
-  border: none;
-  border-bottom: 1px solid #fff;
+  margin-top: 5px;
   background: transparent;
   outline: none;
   height: 40px;
   color:#fff;
-  font-size: 16px;
+  font-size: 1.3em;
+  padding-left: 10px;
 }
-
-input[type="checkbox"]
-{
-  margin-right: 0;
-  margin-left: -110px;
-}
-
 
 /* submit button styling */
 input[type="submit"]
@@ -195,68 +175,15 @@ input[type="submit"]
   height: 40px;
   background:#F3AD2E;
   color: #fff;
-  font-size: 18px;
-  border-radius: 20px;
+  font-size: 1.3em;
 }
 
 /* submit button hover styling */
 input[type="submit"]:hover
 {
   cursor:pointer;
-  background: #fb2525;
+  background: #b28900;
   color:#000;
-}
-
-/* login-box anchor styling */
-.login-box a {
-  text-decoration: none;
-  font-size: 16px;
-  line-height: 20px;
-  color: darkgrey;
-}
-
-/* login-box anchor hover styling */
-.login-box a:hover{
-  color:  #fb2525;
-}
-
-/* signup section styling */
-#section-signup {
-  min-height: 400px;
-  background-color: #7B0828;
-  color: white;
-  text-align: center;
-  flex: 1;
-}
-
-section .signup-box{
-  width: 300px;
-  height: 660px;
-  background:#000;
-  color:#fff;
-  top: 50%;
-  left: 50%;
-  position: absolute;
-  transform: translate(-55%,-50%);
-  box-sizing: border-box;
-  padding: 50px 30px;
-}
-
-.signup-box p {
-  margin: 0;
-  padding: 0;
-  text-align: left;
-  font-weight: bold;
-}
-
-section a{
-  margin-left: -110px;
-  text-decoration: none;
-  color: #fff;
-}
-
-section a:hover{
-  color: #fb2525;
 }
 
 /* Media Queries */
