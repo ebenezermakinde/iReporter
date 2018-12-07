@@ -1,15 +1,17 @@
-class Middleware {
-  static checkIncidentFields(req, res, next) {
-    const { type, location, comment } = req.body;
-    if (type && location && comment) {
-      next();
-    } else {
-      res.status(400).json({
-        status: 400,
-        message: 'type, location and comment cannot be empty',
-      });
-    }
-  }
-}
+import Joi from 'joi';
 
-export default Middleware;
+const checkFields = (req, res, next) => {
+  const schema = Joi.object().keys({
+    type: Joi.string().required(),
+    location: Joi.string().min(3).required(),
+    comment: Joi.string().min(5).required(),
+  });
+  const result = Joi.validate(req.body, schema);
+  if (!result.error) {
+    next();
+  } else {
+    res.send(result.error.details[0].message);
+  }
+};
+
+export default checkFields;
