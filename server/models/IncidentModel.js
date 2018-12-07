@@ -14,8 +14,8 @@ class Incidents {
         status: 'Rejected', // [draft, under investigation, resolved, rejected]
         type: 'red-flag', // [red-flag, intervention]
         location: 'Lat long', // Lat Long coordinates
-        Images: [],
-        Videos: [],
+        images: [],
+        videos: [],
         comment: 'Bad roads',
       },
     ];
