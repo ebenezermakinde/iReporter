@@ -110,22 +110,57 @@ class Incidents {
   }
 
   static add(req, res) {
-    incident.addOne(req.body)
-      .then(result => res.json({
-        status: 201,
-        data: [{
-          id: result.rows[0].id,
-          message: 'Created red-flag record',
-        }],
-      }))
-      .catch((error) => {
-        if (error) {
-          res.status(500).json({
-            status: 500,
-            message: 'Please insert a valid type e.g red-flag, intervention',
+    if (req.route.path === '/red-flags') {
+      if (req.body.type === 'red-flag') {
+        incident.addOne(req.body)
+          .then(result => res.json({
+            status: 200,
+            data: [{
+              id: result.rows[0].id,
+              message: 'Created red-flag record',
+            }],
+          }))
+          .catch((error) => {
+            if (error) {
+              res.status(500).json({
+                status: 500,
+                message: 'Please insert a valid type e.g red-flag, intervention',
+              });
+            }
           });
-        }
-      });
+      } else {
+        res.json({
+          status: 400,
+          message: 'Please insert correct type (red-flag)',
+        });
+      }
+    } else {
+      if (req.body.type === 'intervention') {
+        incident.addOne(req.body)
+          .then((result) => {
+            res.json({
+              status: 201,
+              data: [{
+                id: result.rows[0].id,
+                message: 'Created intervention record',
+              }]
+            });
+          })
+          .catch((error) => {
+            if (error) {
+              res.status(500).json({
+                status: 500,
+                message: 'Please insert a valid type e.g red-flag, intervention',
+              });
+            }
+          });
+      } else {
+        res.json({
+          status: 400,
+          message: 'Please insert correct type (intervention)'
+        })
+      }
+    }
   }
 
   static updateComment(req, res) {

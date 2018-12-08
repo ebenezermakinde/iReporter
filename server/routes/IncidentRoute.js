@@ -22,7 +22,7 @@ router.get('/intervention/:id', incident.getOne);
 
 router.delete('/intervention/:id', incident.remove);
 
-// router.post('/intervention', checkFields, incident.add);
+router.post('/intervention', checkFields, incident.add);
 
 // router.patch('/intervention/:id/comment', incident.updateComment);
 
