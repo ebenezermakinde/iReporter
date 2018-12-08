@@ -16,7 +16,7 @@ router.patch('/red-flags/:id/comment', incident.updateComment);
 
 router.patch('/red-flags/:id/location', incident.updateLocation);
 
-// router.get('/intervention', incident.getAll);
+router.get('/intervention', incident.getAll);
 
 // router.get('/intervention/:id', incident.getOne);
 
