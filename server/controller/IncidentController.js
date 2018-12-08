@@ -4,10 +4,26 @@ import incident from '../models/IncidentModel';
 class Incidents {
   static getAll(req, res) {
     incident.findAll()
-      .then(result => res.json({
-        status: 200,
-        data: result.rows,
-      }))
+      .then((result) => {
+        if (req.route.path && result.rowCount === 0) {
+          res.json({
+            status: 404,
+            message: 'Not found',
+          });
+        } else if (req.route.path === '/red-flags' && result.rowCount >= 1) {
+          const redflag = result.rows.filter(row => row.type === 'red-flag');
+          res.json({
+            status: 200,
+            data: redflag,
+          });
+        } else {
+          const intervention = result.rows.filter(row => row.type !== 'red-flag');
+          res.json({
+            status: 200,
+            data: intervention,
+          });
+        }
+      })
       .catch(error => res.json(error));
   }
 
