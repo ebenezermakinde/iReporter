@@ -18,7 +18,7 @@ router.patch('/red-flags/:id/location', incident.updateLocation);
 
 router.get('/intervention', incident.getAll);
 
-// router.get('/intervention/:id', incident.getOne);
+router.get('/intervention/:id', incident.getOne);
 
 // router.delete('/intervention/:id', incident.remove);
 

@@ -28,18 +28,24 @@ class Incidents {
   }
 
   static getOne(req, res) {
-    // console.log(req.route.path);
     incident.findOne(req.params)
       .then((result) => {
-        if (result.rowCount === 0) {
-          res.status(404).json({
+        if (req.route.path && !result.rowCount) {
+          res.json({
             status: 404,
             message: 'Not found',
           });
-        } else {
+        } else if (req.route.path === '/red-flags/:id' && result.rowCount) {
+          const redflag = result.rows.filter(row => row.type === 'red-flag');
           res.json({
             status: 200,
-            data: result.rows,
+            data: redflag,
+          });
+        } else {
+          const intervention = result.rows.filter(row => row.type !== 'red-flag');
+          res.json({
+            status: 200,
+            data: intervention,
           });
         }
       })
