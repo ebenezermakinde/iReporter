@@ -1,5 +1,5 @@
 import Joi from 'joi';
-
+// class Middlewares {}
 const checkFields = (req, res, next) => {
   const schema = Joi.object().keys({
     type: Joi.string().required(),
@@ -10,7 +10,10 @@ const checkFields = (req, res, next) => {
   if (!result.error) {
     next();
   } else {
-    res.send(result.error.details[0].message);
+    res.status(400).json({
+      status: 400,
+      message: result.error.details[0].message,
+    });
   }
 };
 

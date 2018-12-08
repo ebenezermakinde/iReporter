@@ -1,84 +1,108 @@
+import { Pool } from 'pg';
+import env from 'dotenv';
+
+env.config();
+
+const db = new Pool({
+  connectionString: process.env.DATABASE_URL,
+});
+
+db.on('connect', () => {
+  console.log('connected to the db');
+});
+
+// class Table {
+//   /**
+//    * Create Tables
+//    */
+//   static createTables() {
+//     const queryText = `CREATE TABLE IF NOT EXISTS incident(
+//       id SERIAL PRIMARY KEY,
+//       createdOn TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+//       status VARCHAR(25) DEFAULT 'draft',
+//       type VARCHAR(13) NOT NULL,
+//       location TEXT NOT NULL,
+//       images TEXT,
+//       videos TEXT,
+//       comment TEXT NOT NULL,
+//       CONSTRAINT check_type check (type in('red-flag','intervention'))
+//       )`;
+
+//     db.query(queryText)
+//       .then((res) => {
+//         console.log(res);
+//         db.end();
+//       })
+//       .catch((err) => {
+//         console.log(err);
+//         db.end();
+//       });
+//   }
+
+//   /**
+//    * Drop Tables
+//    */
+//   static dropTables() {
+//     const queryText = 'DROP TABLE IF EXISTS incident';
+//     db.query(queryText)
+//       .then((res) => {
+//         console.log(res);
+//         db.end();
+//       })
+//       .catch((err) => {
+//         console.log(err);
+//         db.end();
+//       });
+//   }
+// }
+
+db.on('remove', () => {
+  console.log('client removed');
+  // process.exit(0);
+});
+
 // Incidents Class
 
 class Incidents {
   /**
-   * class constructor
-   * @param {object} data
-   */
-  constructor() {
-    this.incidents = [
-      {
-        id: 1,
-        createdOn: new Date(),
-        createdBy: 2, // represents the user who created this record
-        status: 'Rejected', // [draft, under investigation, resolved, rejected]
-        type: 'red-flag', // [red-flag, intervention]
-        location: 'Lat long', // Lat Long coordinates
-        images: [],
-        videos: [],
-        comment: 'Bad roads',
-      },
-    ];
-  }
-
-  /**
    * @returns {object} returns all red-flags/interventions
    */
-  findAll() {
-    return this.incidents;
+  static findAll() {
+    return db.query('SELECT * FROM incident');
   }
 
   /**
    * @returns {object} returns one red flag
    */
-  findOne(id) {
-    const db = this.incidents;
-    const incident = db.find(item => item.id === Number(id));
-    return incident;
+  static findOne({ id }) {
+    return db.query('SELECT * FROM incident WHERE id = $1', [id]);
   }
 
   /**
    * @returns {object} deletes a red-flag/intervention
    */
-  removeOne(id) {
-    const db = this.incidents;
-    const incident = db.findIndex(item => item.id === Number(id));
-    db.splice(incident, 1);
-    return incident;
+  static removeOne({ id }) {
+    return db.query('DELETE FROM incident WHERE id = $1', [id]);
   }
 
   /**
    * @returns {object} adds a red-flag/intervention
    */
-  addOne(incident) {
-    const db = this.incidents;
-    const id = { id: db.length + 1 };
-    const createdOn = { createdOn: new Date() };
-    const createdBy = { createdBy: 2 }; // represents the user who created this record
-    const status = { status: 'draft' }; // [draft, under investigation, resolved, rejected]
-    const newIncident = {
-      ...id,
-      ...createdOn,
-      ...createdBy,
-      ...status,
-      ...incident,
-    };
-
-    db.push(newIncident);
-    return newIncident;
+  static addOne({ type, location, comment }) {
+    return db.query(
+      'INSERT INTO incident(type, location, comment) VALUES ($1, $2, $3) returning *', [type, location, comment],
+    );
   }
 
-  patchComment(id) {
-    const db = this.incidents;
-    const incident = db.find(item => item.id === Number(id));
-    return incident;
+  static patchComment({ id }, { comment }) {
+    return db.query('UPDATE incident SET comment = $1 WHERE id = $2 returning *', [comment, id]);
   }
 
-  patchLocation(id) {
-    const db = this.incidents;
-    const incident = db.find(item => item.id === Number(id));
-    return incident;
+  static patchLocation({ id }, { location }) {
+    return db.query('UPDATE incident SET location = $1 WHERE id = $2 returning *', [location, id]);
   }
 }
 
-export default new Incidents();
+export default Incidents;
+
+require('make-runnable');
