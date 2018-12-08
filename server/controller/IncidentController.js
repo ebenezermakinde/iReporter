@@ -5,19 +5,37 @@ class Incidents {
   static getAll(req, res) {
     incident.findAll()
       .then((result) => {
-        if (req.route.path && result.rowCount === 0) {
+        if (req.route.path && !result.rowCount) {
           res.json({
             status: 404,
-            message: 'Not found',
+            message: 'No red-flag or intervention records',
           });
-        } else if (req.route.path === '/red-flags' && result.rowCount >= 1) {
+        } else if (req.route.path === '/red-flags') {
           const redflag = result.rows.filter(row => row.type === 'red-flag');
-          res.json({
-            status: 200,
-            data: redflag,
-          });
+          if (redflag.length === 0) {
+            res.json({
+              status: 404,
+              message: 'No red-flag records',
+            });
+          } else {
+            res.json({
+              status: 200,
+              data: redflag,
+            });
+          }
         } else {
           const intervention = result.rows.filter(row => row.type !== 'red-flag');
+          if (intervention.length === 0) {
+            res.json({
+              status: 404,
+              message: 'No intervention records',
+            });
+          } else {
+            res.json({
+              status: 200,
+              data: intervention,
+            });
+          }
           res.json({
             status: 200,
             data: intervention,
@@ -62,15 +80,22 @@ class Incidents {
   static remove(req, res) {
     incident.removeOne(req.params)
       .then((result) => {
-        if (result.rowCount === 0) {
+        if (req.route.path && !result.rowCount) {
           res.json({
             status: 404,
             message: 'Not found',
           });
-        } else {
+        } else if (req.route.path === '/red-flags/:id' && result.rowCount) {
+          const redflag = result.rows.filter(row => row.type === 'red-flag');
           res.json({
-            id: result.rows[0].id,
+            id: redflag[0].id,
             message: 'red-flag record has been deleted',
+          });
+        } else {
+          const intervention = result.rows.filter(row => row.type !== 'red-flag');
+          res.json({
+            id: intervention[0].id,
+            message: 'intervention record has been deleted',
           });
         }
       })

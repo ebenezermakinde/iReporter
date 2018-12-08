@@ -82,7 +82,7 @@ class Incidents {
    * @returns {object} deletes a red-flag/intervention
    */
   static removeOne({ id }) {
-    return db.query('DELETE FROM incident WHERE id = $1', [id]);
+    return db.query('DELETE FROM incident WHERE id = $1 returning *', [id]);
   }
 
   /**

@@ -20,7 +20,7 @@ router.get('/intervention', incident.getAll);
 
 router.get('/intervention/:id', incident.getOne);
 
-// router.delete('/intervention/:id', incident.remove);
+router.delete('/intervention/:id', incident.remove);
 
 // router.post('/intervention', checkFields, incident.add);
 
