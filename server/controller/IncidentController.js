@@ -6,7 +6,7 @@ class Incidents {
     incident.findAll()
       .then((result) => {
         if (req.route.path && !result.rowCount) {
-          res.json({
+          res.status(404).json({
             status: 404,
             error: 'No red-flag or intervention records',
           });
@@ -42,7 +42,7 @@ class Incidents {
           });
         }
       })
-      .catch(error => res.json(error));
+      .catch(error => res.status(500).json(error));
   }
 
   static getOne(req, res) {
@@ -120,8 +120,8 @@ class Incidents {
     if (req.route.path === '/red-flags') {
       if (req.body.type === 'red-flag') {
         incident.addOne(req.body)
-          .then(result => res.json({
-            status: 200,
+          .then(result => res.status(201).json({
+            status: 201,
             data: [{
               id: result.rows[0].id,
               message: 'Created red-flag record',
@@ -145,7 +145,7 @@ class Incidents {
       if (req.body.type === 'intervention') {
         incident.addOne(req.body)
           .then((result) => {
-            res.json({
+            res.status(201).json({
               status: 201,
               data: [{
                 id: result.rows[0].id,
