@@ -7,4 +7,5 @@ before_script:
   - psql -c 'create database ireporter;' -U postgres
 script:
   - npm run migrate
+  - npm run test
 after_success: npm run coverage
