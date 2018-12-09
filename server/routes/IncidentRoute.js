@@ -26,6 +26,6 @@ router.post('/intervention', checkFields, incident.add);
 
 router.patch('/intervention/:id/comment', incident.updateComment);
 
-// router.patch('/intervention/:id/location', incident.updateLocation);
+router.patch('/intervention/:id/location', incident.updateLocation);
 
 export default router;

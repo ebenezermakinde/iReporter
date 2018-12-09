@@ -8,14 +8,14 @@ class Incidents {
         if (req.route.path && !result.rowCount) {
           res.json({
             status: 404,
-            message: 'No red-flag or intervention records',
+            error: 'No red-flag or intervention records',
           });
         } else if (req.route.path === '/red-flags') {
           const redflag = result.rows.filter(row => row.type === 'red-flag');
           if (redflag.length === 0) {
             res.json({
               status: 404,
-              message: 'No red-flag records',
+              error: 'No red-flag records',
             });
           } else {
             res.json({
@@ -28,7 +28,7 @@ class Incidents {
           if (intervention.length === 0) {
             res.json({
               status: 404,
-              message: 'No intervention records',
+              error: 'No intervention records',
             });
           } else {
             res.json({
@@ -52,7 +52,7 @@ class Incidents {
           if (result.rows[0].type !== 'red-flag') {
             res.json({
               status: 404,
-              message: 'Not found',
+              error: 'Not found',
             });
           } else {
             res.json({
@@ -64,7 +64,7 @@ class Incidents {
           if (result.rows[0].type === 'red-flag') {
             res.json({
               status: 404,
-              message: 'Not found',
+              error: 'Not found',
             });
           } else {
             res.json({
@@ -78,7 +78,7 @@ class Incidents {
         if (error) {
           res.status(500).json({
             status: 500,
-            message: 'An error occurred most likely invalid id',
+            error: 'An error occurred most likely invalid id',
           });
         }
       });
@@ -90,7 +90,7 @@ class Incidents {
         if (req.route.path && !result.rowCount) {
           res.json({
             status: 404,
-            message: 'Not found',
+            error: 'Not found',
           });
         } else if (req.route.path === '/red-flags/:id' && result.rowCount) {
           const redflag = result.rows.filter(row => row.type === 'red-flag');
@@ -110,7 +110,7 @@ class Incidents {
         if (error) {
           res.status(500).json({
             status: 500,
-            message: 'An error occurred most likely invalid id',
+            error: 'An error occurred most likely invalid id',
           });
         }
       });
@@ -131,14 +131,14 @@ class Incidents {
             if (error) {
               res.status(500).json({
                 status: 500,
-                message: 'Please insert a valid type e.g red-flag, intervention',
+                error: 'Please insert a valid type e.g red-flag, intervention',
               });
             }
           });
       } else {
         res.json({
           status: 400,
-          message: 'Please insert correct type (red-flag)',
+          error: 'Please insert correct type (red-flag)',
         });
       }
     } else {
@@ -157,14 +157,14 @@ class Incidents {
             if (error) {
               res.status(500).json({
                 status: 500,
-                message: 'Please insert a valid type e.g red-flag, intervention',
+                error: 'Please insert a valid type e.g red-flag, intervention',
               });
             }
           });
       } else {
         res.json({
           status: 400,
-          message: 'Please insert correct type (intervention)',
+          error: 'Please insert correct type (intervention)',
         });
       }
     }
@@ -174,11 +174,10 @@ class Incidents {
     if (req.route.path === '/red-flags/:id/comment') {
       incident.patchComment(req.params, req.body)
         .then((result) => {
-          console.log(result);
           if (result.rowCount === 0) {
             res.json({
               status: 404,
-              message: 'red-flag Not found',
+              error: 'red-flag Not found',
             });
           } else {
             res.json({
@@ -197,7 +196,7 @@ class Incidents {
           if (result.rowCount === 0) {
             res.json({
               status: 404,
-              message: 'intervention Not found',
+              error: 'intervention Not found',
             });
           } else {
             res.json({
@@ -214,22 +213,45 @@ class Incidents {
   }
 
   static updateLocation(req, res) {
-    incident.patchLocation(req.params, req.body)
-      .then(result => res.json({
-        status: 200,
-        data: [{
-          id: result.rows[0].id,
-          message: 'Updated red-flag record\'s location',
-        }],
-      }))
-      .catch((error) => {
-        if (error) {
-          res.status(500).json({
-            status: 500,
-            message: 'An error occurred most likely invalid id',
-          });
-        }
-      });
+    if (req.route.path === '/red-flags/:id/location') {
+      incident.patchLocation(req.params, req.body)
+        .then((result) => {
+          if (result.rowCount === 0) {
+            res.json({
+              status: 404,
+              error: 'red-flag Not found',
+            });
+          } else {
+            res.json({
+              status: 200,
+              data: [{
+                id: result.rows[0].id,
+                message: 'Updated red-flag record\'s location',
+              }],
+            });
+          }
+        })
+        .catch(err => res.json(err));
+    } else {
+      incident.patchLocation(req.params, req.body)
+        .then((result) => {
+          if (result.rowCount === 0) {
+            res.json({
+              status: 404,
+              error: 'intervention Not found',
+            });
+          } else {
+            res.json({
+              status: 200,
+              data: [{
+                id: result.rows[0].id,
+                error: 'Updated intervention record\'s location',
+              }],
+            });
+          }
+        })
+        .catch(err => res.json(err));
+    }
   }
 }
 
