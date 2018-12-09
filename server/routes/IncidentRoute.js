@@ -24,7 +24,7 @@ router.delete('/intervention/:id', incident.remove);
 
 router.post('/intervention', checkFields, incident.add);
 
-// router.patch('/intervention/:id/comment', incident.updateComment);
+router.patch('/intervention/:id/comment', incident.updateComment);
 
 // router.patch('/intervention/:id/location', incident.updateLocation);
 
