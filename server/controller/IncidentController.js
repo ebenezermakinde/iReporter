@@ -60,7 +60,7 @@ class Incidents {
               data: result.rows,
             });
           }
-        } else if (req.route.path === '/intervention/:id') {
+        } else if (req.route.path === '/interventions/:id') {
           if (result.rows[0].type === 'red-flag') {
             res.json({
               status: 404,

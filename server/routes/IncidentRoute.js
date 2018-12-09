@@ -16,16 +16,16 @@ router.patch('/red-flags/:id/comment', incident.updateComment);
 
 router.patch('/red-flags/:id/location', incident.updateLocation);
 
-router.get('/intervention', incident.getAll);
+router.get('/interventions', incident.getAll);
 
-router.get('/intervention/:id', incident.getOne);
+router.get('/interventions/:id', incident.getOne);
 
-router.delete('/intervention/:id', incident.remove);
+router.delete('/interventions/:id', incident.remove);
 
-router.post('/intervention', checkFields, incident.add);
+router.post('/interventions', checkFields, incident.add);
 
-router.patch('/intervention/:id/comment', incident.updateComment);
+router.patch('/interventions/:id/comment', incident.updateComment);
 
-router.patch('/intervention/:id/location', incident.updateLocation);
+router.patch('/interventions/:id/location', incident.updateLocation);
 
 export default router;
