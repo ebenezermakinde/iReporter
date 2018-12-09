@@ -1,4 +1,10 @@
 language: "node_js"
 node_js:
   - "8"
+services:
+  - postgresql
+before_script:
+  - psql -c 'create database ireporter;' -U postgres
+script:
+  - npm run migrate
 after_success: npm run coverage
