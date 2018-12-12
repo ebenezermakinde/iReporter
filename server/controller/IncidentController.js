@@ -1,256 +1,133 @@
-import incident from '../models/IncidentModel';
-// import helper from '../helpers/helper';
-
+import db from '../models/ireporterModel';
+import Helper from '../helpers/helper';
+/**
+ * Incident class
+ */
 class Incidents {
+  /**
+   * Get all incidents
+   * @param {object} req
+   * @param {object} res
+   * @returns {object} all incident objects
+   */
   static getAll(req, res) {
-    incident.findAll()
-      .then((result) => {
-        if (req.route.path && !result.rowCount) {
-          res.status(404).json({
-            status: 404,
-            error: 'No red-flag or intervention records',
-          });
-        } else if (req.route.path === '/red-flags') {
-          const redflag = result.rows.filter(row => row.type === 'red-flag');
-          if (redflag.length === 0) {
-            res.json({
-              status: 404,
-              error: 'No red-flag records',
-            });
-          } else {
-            res.json({
-              status: 200,
-              data: redflag,
-            });
-          }
-        } else {
-          const intervention = result.rows.filter(row => row.type !== 'red-flag');
-          if (intervention.length === 0) {
-            res.json({
-              status: 404,
-              error: 'No intervention records',
-            });
-          } else {
-            res.json({
-              status: 200,
-              data: intervention,
-            });
-          }
-          res.json({
-            status: 200,
-            data: intervention,
-          });
-        }
-      })
-      .catch(error => res.status(500).json(error));
-  }
-
-  static getOne(req, res) {
-    incident.findOne(req.params)
-      .then((result) => {
-        if (req.route.path === '/red-flags/:id') {
-          if (result.rows[0].type !== 'red-flag') {
-            res.json({
-              status: 404,
-              error: 'Not found',
-            });
-          } else {
-            res.json({
-              status: 200,
-              data: result.rows,
-            });
-          }
-        } else if (req.route.path === '/interventions/:id') {
-          if (result.rows[0].type === 'red-flag') {
-            res.json({
-              status: 404,
-              error: 'Not found',
-            });
-          } else {
-            res.json({
-              status: 200,
-              data: result.rows,
-            });
-          }
-        }
-      })
-      .catch((error) => {
-        if (error) {
-          res.status(500).json({
-            status: 500,
-            error: 'An error occurred most likely invalid id',
-          });
-        }
-      });
-  }
-
-  static remove(req, res) {
-    incident.removeOne(req.params)
-      .then((result) => {
-        if (req.route.path && !result.rowCount) {
-          res.json({
-            status: 404,
-            error: 'Not found',
-          });
-        } else if (req.route.path === '/red-flags/:id' && result.rowCount) {
-          const redflag = result.rows.filter(row => row.type === 'red-flag');
-          res.json({
-            id: redflag[0].id,
-            message: 'red-flag record has been deleted',
-          });
-        } else {
-          const intervention = result.rows.filter(row => row.type !== 'red-flag');
-          res.json({
-            id: intervention[0].id,
-            message: 'intervention record has been deleted',
-          });
-        }
-      })
-      .catch((error) => {
-        if (error) {
-          res.status(500).json({
-            status: 500,
-            error: 'An error occurred most likely invalid id',
-          });
-        }
-      });
-  }
-
-  static add(req, res) {
+    const query = 'SELECT * FROM incidents WHERE type = $1';
     if (req.route.path === '/red-flags') {
-      if (req.body.type === 'red-flag') {
-        incident.addOne(req.body)
-          .then(result => res.status(201).json({
-            status: 201,
-            data: [{
-              id: result.rows[0].id,
-              message: 'Created red-flag record',
-            }],
-          }))
-          .catch((error) => {
-            if (error) {
-              res.status(500).json({
-                status: 500,
-                error: 'Please insert a valid type e.g red-flag, intervention',
-              });
-            }
-          });
-      } else {
-        res.json({
-          status: 400,
-          error: 'Please insert correct type (red-flag)',
-        });
-      }
+      Helper.find(req, res, query, ['red-flag']);
     } else {
-      if (req.body.type === 'intervention') {
-        incident.addOne(req.body)
-          .then((result) => {
-            res.status(201).json({
-              status: 201,
-              data: [{
-                id: result.rows[0].id,
-                message: 'Created intervention record',
-              }],
-            });
-          })
-          .catch((error) => {
-            if (error) {
-              res.status(500).json({
-                status: 500,
-                error: 'Please insert a valid type e.g red-flag, intervention',
-              });
-            }
-          });
-      } else {
-        res.json({
-          status: 400,
-          error: 'Please insert correct type (intervention)',
-        });
-      }
+      Helper.find(req, res, query, ['intervention']);
     }
   }
 
+  /**
+   * Get one incident
+   * @param {object} req
+   * @param {object} res
+   * @returns {object} one incident object
+   */
+  static getOne(req, res) {
+    const query = 'SELECT * FROM incidents WHERE id = $1 AND type = $2';
+    if (req.route.path === '/red-flags/:id') {
+      Helper.find(req, res, query, [req.params.id, 'red-flag']);
+    } else {
+      Helper.find(req, res, query, [req.params.id, 'intervention']);
+    }
+  }
+
+  /**
+   * Delete an incident
+   * @param {object} req
+   * @param {object} res
+   * @returns {object} a delete message
+   */
+  static remove(req, res) {
+    const query = 'DELETE FROM incidents WHERE id = $1 AND type = $2';
+    if (req.route.path === '/red-flags/:id') {
+      db.query(query, [req.params.id, 'red-flag'])
+        .then(result => res.status(200).json({
+          status: 200,
+          data: [{
+            id: result.rows[0].id,
+            message: 'redflag record has been deleted',
+          }],
+        }))
+        .catch(error => res.json(error.message));
+    } else {
+      db.query(query, [req.params.id, 'intervention'])
+        .then(result => res.status(200).json({
+          status: 200,
+          data: [{
+            id: result.rows[0].id,
+            message: 'intervention record has been deleted',
+          }],
+        }))
+        .catch(error => res.json(error.message));
+    }
+  }
+
+  /**
+   * Creates an incident
+   * @param {object} req
+   * @param {object} res
+   * @returns {object} a created incident object
+   */
+  static add(req, res) {
+    const query = `INSERT INTO
+      incidents(type, location, images, videos, comment)
+      VALUES($1, $2, $3, $4, $5)
+      returning *`;
+    const values = [
+      req.body.type,
+      req.body.location,
+      req.body.images,
+      req.body.videos,
+      req.body.comment,
+    ];
+    db.query(query, values)
+      .then((result) => {
+        const created = {
+          status: 201,
+          data: [{
+            id: result.rows[0].id,
+            message: `Created ${req.body.type} record`,
+          }],
+        };
+        res.json(created);
+      })
+      .catch(error => res.status(500).json(error.message));
+  }
+
+  /**
+   * Edits only the comment
+   * @param {object} req
+   * @param {object} res
+   * @returns {object} an edited comment message
+   */
   static updateComment(req, res) {
+    const query = 'UPDATE incidents SET comment = $1 WHERE id = $2 AND type = $3 returning *';
     if (req.route.path === '/red-flags/:id/comment') {
-      incident.patchComment(req.params, req.body)
-        .then((result) => {
-          if (result.rowCount === 0) {
-            res.json({
-              status: 404,
-              error: 'red-flag Not found',
-            });
-          } else {
-            res.json({
-              status: 200,
-              data: [{
-                id: result.rows[0].id,
-                message: 'Updated red-flag record\'s comment',
-              }],
-            });
-          }
-        })
-        .catch(err => res.json(err));
+      const values = [req.body.comment, req.params.id, 'red-flag'];
+      Helper.patch(req, res, query, values);
     } else {
-      incident.patchComment(req.params, req.body)
-        .then((result) => {
-          if (result.rowCount === 0) {
-            res.json({
-              status: 404,
-              error: 'intervention Not found',
-            });
-          } else {
-            res.json({
-              status: 200,
-              data: [{
-                id: result.rows[0].id,
-                message: 'Updated intervention record\'s comment',
-              }],
-            });
-          }
-        })
-        .catch(err => res.json(err));
+      const values = [req.body.comment, req.params.id, 'intervention'];
+      Helper.patch(req, res, query, values);
     }
   }
 
+  /**
+   * Edits only the location
+   * @param {object} req
+   * @param {object} res
+   * @returns {object} an edited location message
+   */
   static updateLocation(req, res) {
+    const query = 'UPDATE incidents SET location = $1 WHERE id = $2 AND type = $3 returning *';
     if (req.route.path === '/red-flags/:id/location') {
-      incident.patchLocation(req.params, req.body)
-        .then((result) => {
-          if (result.rowCount === 0) {
-            res.json({
-              status: 404,
-              error: 'red-flag Not found',
-            });
-          } else {
-            res.json({
-              status: 200,
-              data: [{
-                id: result.rows[0].id,
-                message: 'Updated red-flag record\'s location',
-              }],
-            });
-          }
-        })
-        .catch(err => res.json(err));
+      const values = [req.body.location, req.params.id, 'red-flag'];
+      Helper.patch(req, res, query, values);
     } else {
-      incident.patchLocation(req.params, req.body)
-        .then((result) => {
-          if (result.rowCount === 0) {
-            res.json({
-              status: 404,
-              error: 'intervention Not found',
-            });
-          } else {
-            res.json({
-              status: 200,
-              data: [{
-                id: result.rows[0].id,
-                error: 'Updated intervention record\'s location',
-              }],
-            });
-          }
-        })
-        .catch(err => res.json(err));
+      const values = [req.body.location, req.params.id, 'intervention'];
+      Helper.patch(req, res, query, values);
     }
   }
 }
