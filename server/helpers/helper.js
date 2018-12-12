@@ -38,7 +38,7 @@ class Helper {
    * @param {object} res
    * @param {object} query
    * @param {object} values
-   * @returns {object} a message
+   * @returns {object} a Promise
    */
   static patch(req, res, query, values) {
     return db.query(query, values)
@@ -81,7 +81,7 @@ class Helper {
   }
 
   /**
-   * Gnerate Token
+   * Generate Token
    * @param {string} id
    * @returns {string} token
    */
