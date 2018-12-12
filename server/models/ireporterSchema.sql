@@ -12,6 +12,3 @@ CREATE TABLE incidents (
   comment TEXT NOT NULL,
   CONSTRAINT check_type check (type in('red-flag','intervention'))
 );
-
-INSERT INTO incidents(type,location,comment)
-VALUES('red-flag','okokomaiko','bad roads');

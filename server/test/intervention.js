@@ -28,7 +28,6 @@ describe('GET one intervention', () => {
       .get('/api/v1/interventions/2')
       .set('Accept', 'application/json')
       .end((err, res) => {
-        console.log(res.body);
         expect(err).to.equal(null);
         expect(res.status).to.equal(404);
         expect(res.body.status).to.equal(404);
