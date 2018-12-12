@@ -13,7 +13,6 @@ describe('GET all red-flags', () => {
       .get('/api/v1/red-flags')
       .set('Accept', 'application/json')
       .end((err, res) => {
-        console.log(res.body);
         expect(res.status).to.equal(404);
         expect(res.body.status).to.equal(404);
         expect(res.body.error).to.equal('No red-flag(s) record found');
@@ -29,7 +28,6 @@ describe('GET one red-flags', () => {
       .get('/api/v1/red-flags/2')
       .set('Accept', 'application/json')
       .end((err, res) => {
-        console.log(res.body);
         expect(err).to.equal(null);
         expect(res.status).to.equal(404);
         expect(res.body.status).to.equal(404);
