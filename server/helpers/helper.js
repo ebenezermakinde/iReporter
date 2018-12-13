@@ -14,51 +14,40 @@ class Helper {
    * @param {Array} type
    * @returns {object} of a record
    */
-  static find(req, res, query, type) {
+  static controller(req, res, query, type) {
     return db.query(query, type)
       .then((result) => {
         if (result.rowCount === 0) {
-          res.status(404).json({
-            status: 404,
-            error: `No ${type}(s) record found`, // fix id issue
-          });
-        } else {
+          res.status(404).json({ status: 404, error: `No ${type[0]}(s) record found` });
+        } else if (result.command === 'UPDATE') {
+          let path = req.url.split('/');
+          path = path[path.length - 1];
           res.json({
             status: 200,
-            data: result.rows,
+            data: [{ id: result.rows[0].id, message: `Updated ${type[2]} record's ${path}` }],
           });
-        }
-      })
-      .catch(error => res.json(error.message));
-  }
-
-  /**
-   * Edits a record
-   * @param {object} req
-   * @param {object} res
-   * @param {object} query
-   * @param {object} values
-   * @returns {object} a Promise
-   */
-  static patch(req, res, query, values) {
-    return db.query(query, values)
-      .then((result) => {
-        if (result.rowCount === 0) {
-          res.json({
-            status: 404,
-            error: `No ${values[2]} records found`,
-          });
-        } else {
+        } else if (result.command === 'INSERT') {
           res.json({
             status: 200,
-            data: [{
-              id: result.rows[0].id,
-              message: `Updated ${values[2]} record's`, // work on this too
-            }],
+            data: [{ id: result.rows[0].id, message: `Created ${result.rows[0].type} record` }],
           });
+        } else if (result.command === 'DELETE') {
+          res.json({
+            status: 200,
+            data: [{ id: result.rows[0].id, message: `${result.rows[0].type} record has been deleted` }],
+          });
+        } else {
+          res.json({ status: 200, data: result.rows });
         }
       })
-      .catch(error => res.status(500).json(error.message));
+      .catch((error) => {
+        console.log(error);
+        if (error.routine === 'string_to_uuid') {
+          res.status(400).json({ status: 400, error: 'Please insert a valid URL' });
+        } else {
+          res.status(500).json({ status: 500, error: error.message });
+        }
+      });
   }
 
   /**
@@ -87,7 +76,7 @@ class Helper {
    */
   static generateToken(id) {
     const token = jwt.sign({
-      userId: id,
+      id,
     },
     process.env.SECRET, { expiresIn: '7d' });
     return token;

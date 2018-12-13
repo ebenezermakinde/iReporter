@@ -1,3 +1,4 @@
+import uuidv4 from 'uuid/v4';
 import db from '../models/ireporterModel';
 import Helper from '../helpers/helper';
 /**
@@ -11,12 +12,11 @@ class Incidents {
    * @returns {object} all incident objects
    */
   static getAll(req, res) {
-    const query = 'SELECT * FROM incidents WHERE type = $1';
+    const query = 'SELECT * FROM incidents WHERE type = $1 AND createdby = $2';
     if (req.route.path === '/red-flags') {
-      Helper.find(req, res, query, ['red-flag']);
-    } else {
-      Helper.find(req, res, query, ['intervention']);
+      return Helper.controller(req, res, query, ['red-flag', req.user.id]);
     }
+    return Helper.controller(req, res, query, ['intervention', req.user.id]);
   }
 
   /**
@@ -26,12 +26,11 @@ class Incidents {
    * @returns {object} one incident object
    */
   static getOne(req, res) {
-    const query = 'SELECT * FROM incidents WHERE id = $1 AND type = $2';
+    const query = 'SELECT * FROM incidents WHERE type = $1 AND id = $2 AND createdby = $3';
     if (req.route.path === '/red-flags/:id') {
-      Helper.find(req, res, query, [req.params.id, 'red-flag']);
-    } else {
-      Helper.find(req, res, query, [req.params.id, 'intervention']);
+      return Helper.controller(req, res, query, ['red-flag', req.params.id, req.user.id]);
     }
+    return Helper.controller(req, res, query, ['intervention', req.params.id, req.user.id]);
   }
 
   /**
@@ -41,28 +40,13 @@ class Incidents {
    * @returns {object} a delete message
    */
   static remove(req, res) {
-    const query = 'DELETE FROM incidents WHERE id = $1 AND type = $2';
+    const query = 'DELETE FROM incidents WHERE type = $1 AND id = $2 AND createdby = $3 returning *';
     if (req.route.path === '/red-flags/:id') {
-      db.query(query, [req.params.id, 'red-flag'])
-        .then(result => res.status(200).json({
-          status: 200,
-          data: [{
-            id: result.rows[0].id,
-            message: 'redflag record has been deleted',
-          }],
-        }))
-        .catch(error => res.json(error.message));
-    } else {
-      db.query(query, [req.params.id, 'intervention'])
-        .then(result => res.status(200).json({
-          status: 200,
-          data: [{
-            id: result.rows[0].id,
-            message: 'intervention record has been deleted',
-          }],
-        }))
-        .catch(error => res.json(error.message));
+      const values = ['red-flag', req.params.id, req.user.id];
+      return Helper.controller(req, res, query, values);
     }
+    const values = ['intervention', req.params.id, req.user.id];
+    return Helper.controller(req, res, query, values);
   }
 
   /**
@@ -73,28 +57,19 @@ class Incidents {
    */
   static add(req, res) {
     const query = `INSERT INTO
-      incidents(type, location, images, videos, comment)
-      VALUES($1, $2, $3, $4, $5)
+      incidents(id, createdby, type, location, images, videos, comment)
+      VALUES($1, $2, $3, $4, $5, $6, $7)
       returning *`;
     const values = [
+      uuidv4(),
+      req.user.id,
       req.body.type,
       req.body.location,
       req.body.images,
       req.body.videos,
       req.body.comment,
     ];
-    db.query(query, values)
-      .then((result) => {
-        const created = {
-          status: 201,
-          data: [{
-            id: result.rows[0].id,
-            message: `Created ${req.body.type} record`,
-          }],
-        };
-        res.json(created);
-      })
-      .catch(error => res.status(500).json(error.message));
+    return Helper.controller(req, res, query, values);
   }
 
   /**
@@ -104,14 +79,13 @@ class Incidents {
    * @returns {object} an edited comment message
    */
   static updateComment(req, res) {
-    const query = 'UPDATE incidents SET comment = $1 WHERE id = $2 AND type = $3 returning *';
+    const query = 'UPDATE incidents SET comment = $1 WHERE id = $2 AND type = $3 AND createdby = $4 returning *';
     if (req.route.path === '/red-flags/:id/comment') {
-      const values = [req.body.comment, req.params.id, 'red-flag'];
-      Helper.patch(req, res, query, values);
-    } else {
-      const values = [req.body.comment, req.params.id, 'intervention'];
-      Helper.patch(req, res, query, values);
+      const values = [req.body.comment, req.params.id, 'red-flag', req.user.id];
+      return Helper.controller(req, res, query, values);
     }
+    const values = [req.body.comment, req.params.id, 'intervention', req.user.id];
+    return Helper.controller(req, res, query, values);
   }
 
   /**
@@ -121,14 +95,13 @@ class Incidents {
    * @returns {object} an edited location message
    */
   static updateLocation(req, res) {
-    const query = 'UPDATE incidents SET location = $1 WHERE id = $2 AND type = $3 returning *';
+    const query = 'UPDATE incidents SET location = $1 WHERE id = $2 AND type = $3 AND createdby = $4 returning *';
     if (req.route.path === '/red-flags/:id/location') {
-      const values = [req.body.location, req.params.id, 'red-flag'];
-      Helper.patch(req, res, query, values);
-    } else {
-      const values = [req.body.location, req.params.id, 'intervention'];
-      Helper.patch(req, res, query, values);
+      const values = [req.body.location, req.params.id, 'red-flag', req.user.id];
+      return Helper.controller(req, res, query, values);
     }
+    const values = [req.body.location, req.params.id, 'intervention', req.user.id];
+    return Helper.controller(req, res, query, values);
   }
 }
 

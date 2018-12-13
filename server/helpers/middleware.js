@@ -1,15 +1,49 @@
 import Joi from 'joi';
+import jwt from 'jsonwebtoken';
+import db from '../models/ireporterModel';
 
 /**
  * Middlewares class
  */
 class Middlewares {
   /**
+   * Verify Token
+   * @param {object} req
+   * @param {object} res
+   * @param {object} next
+   * @returns {object|void} response object
+   */
+  static async verifyToken(req, res, next) {
+    const token = req.headers['x-access-token'];
+    if (!token) {
+      return res.status(400).json({
+        status: 400,
+        error: 'Access restricted',
+      });
+    }
+    try {
+      const decoded = await jwt.verify(token, process.env.SECRET);
+      const query = 'SELECT * FROM users WHERE id = $1';
+      const { rows } = await db.query(query, [decoded.id]);
+      if (!rows[0]) {
+        return res.status(400).json({
+          status: 400,
+          message: 'The token you provided is invalid',
+        });
+      }
+      req.user = { id: decoded.id };
+      next();
+    } catch (error) {
+      return res.status(400).json({ status: 400, error: error.message });
+    }
+  }
+
+  /**
   *Validation function for endpoint inputs
   * @param {object} req
   * @param {object} res
   * @param {object} next
-  * @returns{object} validated input
+  * @returns {object} validated input
   */
   static checkPost(req, res, next) {
     const schema = Joi.object().keys({
@@ -40,13 +74,13 @@ class Middlewares {
   * @param {object} req
   * @param {object} res
   * @param {object} next
-  * @returns{object} validated input
+  * @returns {object} validated input
   */
   static checkRoute(req, res, next) {
     if (req.route.path === `/${req.body.type}s`) {
       next();
     } else {
-      res.json({
+      res.status(400).json({
         status: 400,
         error: 'please insert the correct type for the URL',
       });

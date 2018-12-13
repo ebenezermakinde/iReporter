@@ -1,5 +1,9 @@
+import uuidv4 from 'uuid/v4';
+import env from 'dotenv';
 import db from '../models/ireporterModel';
 import helper from '../helpers/helper';
+
+env.config();
 
 /**
  * User class
@@ -14,10 +18,11 @@ class Users {
   static canSignup(req, res) {
     const hashPassword = helper.hashPassword(req.body.password);
     const query = `INSERT INTO
-    users(firstname, lastname, othernames, email, password, phonenumber, username)
-    VALUES($1, $2, $3, $4, $5, $6, $7)
+    users(id, firstname, lastname, othernames, email, password, phonenumber, username)
+    VALUES($1, $2, $3, $4, $5, $6, $7, $8)
     returning *`;
     const values = [
+      uuidv4(),
       req.body.firstname,
       req.body.lastname,
       req.body.othernames,
@@ -29,13 +34,25 @@ class Users {
     db.query(query, values)
       .then((result) => {
         const token = helper.generateToken(result.rows[0].id);
-        res.status(201).json({ token });
+        res.status(201).json({
+          status: 201,
+          data: [{
+            token,
+            user: result.row[0],
+          }],
+        });
       })
       .catch((error) => {
         if (error.routine === '_bt_check_unique') {
-          res.status(400).json({ message: 'User with email already exists' });
+          res.status(409).json({
+            status: 409,
+            error: 'User with email already exists',
+          });
         } else {
-          res.status(400).send(error.message);
+          res.status(400).json({
+            status: 400,
+            error: error.message,
+          });
         }
       });
   }
@@ -52,12 +69,24 @@ class Users {
       .then((result) => {
         const { rows } = result;
         if (!rows[0]) {
-          res.status(400).json({ message: 'The credentials you provided are not valid' });
+          res.status(400).json({
+            status: 400,
+            error: 'The credentials you provided are not valid',
+          });
         } else if (!helper.comparePassword(rows[0].password, req.body.password)) {
-          res.status(400).json({ message: 'The credentials you provided are not valid' });
+          res.status(400).json({
+            status: 400,
+            message: 'The credentials you provided are not valid',
+          });
         } else {
           const token = helper.generateToken(rows[0].id);
-          res.status(200).json({ token });
+          res.status(200).json({
+            status: 200,
+            data: [{
+              token,
+              user: req.body,
+            }],
+          });
         }
       })
       .catch(error => res.status(400).json(error));
@@ -70,29 +99,13 @@ class Users {
    * @returns {object} a successfully edit message
    */
   static canEdit(req, res) {
+    const query = 'UPDATE users SET status = $1 WHERE id = $2 AND type = $3';
     if (req.route.path === '/red-flags/:id/status') {
-      const query = 'UPDATE users SET status = $1 WHERE id = $2 AND type = $3';
-      db.query(query, [req.body.status, req.params.id, 'red-flag'])
-        .then((result) => {
-          const { rows } = result;
-          res.json({
-            status: 200,
-            data: [{ id: rows[0].id, message: 'Updated red-flag record\'s status' }],
-          });
-        })
-        .catch(error => res.status(500).json(error.message));
-    } else if (req.route.path === '/interventions/:id/status') {
-      const query = 'UPDATE users SET status = $1 WHERE id = $2 AND type = $3';
-      db.query(query, [req.body.status, req.params.id, 'intervention'])
-        .then((result) => {
-          const { rows } = result;
-          res.json({
-            status: 200,
-            data: [{ id: rows[0].id, message: 'Updated intervention record\'s status' }],
-          });
-        })
-        .catch(error => res.status(500).json(error.message));
+      const values = [req.body.status, req.params.id, 'red-flag'];
+      return helper.controller(req, res, query, values);
     }
+    const values = [req.body.status, req.params.id, 'intervention'];
+    return helper.controller(req, res, query, values);
   }
 }
 
