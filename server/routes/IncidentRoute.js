@@ -4,28 +4,28 @@ import middleware from '../helpers/middleware'; // to be refactored
 
 const router = express.Router();
 
-router.get('/red-flags', incident.getAll);
+router.get('/red-flags', middleware.verifyToken, incident.getAll);
 
-router.get('/red-flags/:id', incident.getOne);
+router.get('/red-flags/:id', middleware.verifyToken, incident.getOne);
 
-router.delete('/red-flags/:id', incident.remove);
+router.delete('/red-flags/:id', middleware.verifyToken, incident.remove);
 
-router.post('/red-flags', middleware.checkPost, middleware.checkRoute, incident.add);
+router.post('/red-flags', middleware.verifyToken, middleware.checkPost, middleware.checkRoute, incident.add);
 
-router.patch('/red-flags/:id/comment', incident.updateComment);
+router.patch('/red-flags/:id/comment', middleware.verifyToken, incident.updateComment);
 
-router.patch('/red-flags/:id/location', incident.updateLocation);
+router.patch('/red-flags/:id/location', middleware.verifyToken, incident.updateLocation);
 
-router.get('/interventions', incident.getAll);
+router.get('/interventions', middleware.verifyToken, incident.getAll);
 
-router.get('/interventions/:id', incident.getOne);
+router.get('/interventions/:id', middleware.verifyToken, incident.getOne);
 
-router.delete('/interventions/:id', incident.remove);
+router.delete('/interventions/:id', middleware.verifyToken, incident.remove);
 
-router.post('/interventions', middleware.checkPost, middleware.checkRoute, incident.add);
+router.post('/interventions', middleware.verifyToken, middleware.checkPost, middleware.checkRoute, incident.add);
 
-router.patch('/interventions/:id/comment', incident.updateComment);
+router.patch('/interventions/:id/comment', middleware.verifyToken, incident.updateComment);
 
-router.patch('/interventions/:id/location', incident.updateLocation);
+router.patch('/interventions/:id/location', middleware.verifyToken, incident.updateLocation);
 
 export default router;
