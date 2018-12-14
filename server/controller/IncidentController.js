@@ -79,12 +79,12 @@ class Incidents {
    * @returns {object} an edited comment message
    */
   static updateComment(req, res) {
-    const query = 'UPDATE incidents SET comment = $1 WHERE id = $2 AND type = $3 AND createdby = $4 returning *';
+    const query = 'UPDATE incidents SET comment = $2 WHERE id = $3 AND type = $1 AND createdby = $4 returning *';
     if (req.route.path === '/red-flags/:id/comment') {
-      const values = [req.body.comment, req.params.id, 'red-flag', req.user.id];
+      const values = ['red-flag', req.body.comment, req.params.id, req.user.id];
       return Helper.controller(req, res, query, values);
     }
-    const values = [req.body.comment, req.params.id, 'intervention', req.user.id];
+    const values = ['intervention', req.body.comment, req.params.id, req.user.id];
     return Helper.controller(req, res, query, values);
   }
 
@@ -95,12 +95,12 @@ class Incidents {
    * @returns {object} an edited location message
    */
   static updateLocation(req, res) {
-    const query = 'UPDATE incidents SET location = $1 WHERE id = $2 AND type = $3 AND createdby = $4 returning *';
+    const query = 'UPDATE incidents SET location = $2 WHERE id = $3 AND type = $1 AND createdby = $4 returning *';
     if (req.route.path === '/red-flags/:id/location') {
-      const values = [req.body.location, req.params.id, 'red-flag', req.user.id];
+      const values = ['red-flag', req.body.location, req.params.id, req.user.id];
       return Helper.controller(req, res, query, values);
     }
-    const values = [req.body.location, req.params.id, 'intervention', req.user.id];
+    const values = ['intervention', req.body.location, req.params.id, req.user.id];
     return Helper.controller(req, res, query, values);
   }
 }
