@@ -24,7 +24,7 @@ class Helper {
           path = path[path.length - 1];
           res.json({
             status: 200,
-            data: [{ id: result.rows[0].id, message: `Updated ${type[2]} record's ${path}` }],
+            data: [{ id: result.rows[0].id, message: `Updated ${type[0]} record's ${path}` }],
           });
         } else if (result.command === 'INSERT') {
           res.json({
@@ -41,7 +41,6 @@ class Helper {
         }
       })
       .catch((error) => {
-        console.log(error);
         if (error.routine === 'string_to_uuid') {
           res.status(400).json({ status: 400, error: 'Please insert a valid URL' });
         } else {

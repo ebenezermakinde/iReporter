@@ -39,6 +39,26 @@ class Middlewares {
   }
 
   /**
+   * Checks user isadmin
+   * @param {object} req
+   * @param {object} res
+   * @param {object} next
+   * @returns{object} access forbidden for non-admin
+   */
+  static checkAdmin(req, res, next) {
+    const query = 'SELECT * FROM users WHERE id = $1';
+    db.query(query, [req.user.id])
+      .then((result) => {
+        if (result.rows[0].isadmin === true) {
+          next();
+        } else {
+          res.json({ status: 403, error: 'Access forbidden' });
+        }
+      })
+      .catch(error => res.json(error));
+  }
+
+  /**
   *Validation function for endpoint inputs
   * @param {object} req
   * @param {object} res

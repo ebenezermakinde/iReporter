@@ -18,8 +18,8 @@ class Users {
   static canSignup(req, res) {
     const hashPassword = helper.hashPassword(req.body.password);
     const query = `INSERT INTO
-    users(id, firstname, lastname, othernames, email, password, phonenumber, username)
-    VALUES($1, $2, $3, $4, $5, $6, $7, $8)
+    users(id, firstname, lastname, othernames, email, password, phonenumber, username, isadmin)
+    VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9)
     returning *`;
     const values = [
       uuidv4(),
@@ -30,6 +30,7 @@ class Users {
       hashPassword,
       req.body.phonenumber,
       req.body.username,
+      req.body.isadmin,
     ];
     db.query(query, values)
       .then((result) => {
@@ -38,7 +39,7 @@ class Users {
           status: 201,
           data: [{
             token,
-            user: result.row[0],
+            user: result.rows[0],
           }],
         });
       })
